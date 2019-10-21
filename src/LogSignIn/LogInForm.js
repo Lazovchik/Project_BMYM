@@ -52,9 +52,6 @@ class LogInForm extends Component {
 				</div>
 			);
 		}
-		else{
-			return 0;
-		}
 	}
 
 	render(){

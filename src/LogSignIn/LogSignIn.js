@@ -16,7 +16,7 @@ class LogSignIn extends Component {
 	constructor(props){
 		super(props);
 		this.state={
-			log_or_sign: true, //si on affiche forme signIn ou logIn, par default c log in
+			log_or_sign: false, //si on affiche forme signIn ou logIn, par default c log in/ 'true' pour Sign In
 			c_action: "Sign In"//Titre + texte de button
 		};
 		this.logOrSignVerif = this.logOrSignVerif.bind(this);
