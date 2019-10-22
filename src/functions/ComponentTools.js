@@ -1,6 +1,5 @@
 import React from 'react';
-import filterMail, {findMaxId, findIndexId, findUserId} from './FunctionTools'
-
+import filterMail, {findMaxId, findIndexId, findUserId, addUser, getDbType, notFindIndexId} from './FunctionTools'
 
 //search the combo mail/ pw in the db and alert on the status of the connection
 export default function IsInDb(mail, pw){
@@ -75,8 +74,8 @@ export function showCards(){
     </div>
   );
 }
-//add a user to local storage 'users'  
-export function addUser(fname, lname, nemail, npw, nadmin){
+//create a new user and add it to db 
+export function createUser(fname, lname, nemail, npw, nadmin){
 
   //find actual max Id and increment it
   const users = [...JSON.parse(localStorage.getItem('users'))];
@@ -91,43 +90,44 @@ export function addUser(fname, lname, nemail, npw, nadmin){
       password: npw,
       is_admin: nadmin
   };
-  //import users from storage
-  var newTab = [...JSON.parse(localStorage.getItem('users'))]
-  //add it to the array
-  newTab.push(newUser);
-  //delete the precedent occurence it the local storage
-  localStorage.removeItem('users');
-  //place the new table users
-  localStorage.setItem('users', JSON.stringify(newTab));
+  addUser(newUser);
+}
+//delete the data with the id and type specified
+export function deleteData(id, type)
+{
+  var database = '';
+  var tabFiltered = [];
+  var tab = [];
+  //used temporary as global variable
+  localStorage.setItem('searchId', id);
+
+  database = getDbType(type);
+  //if no database was found, return null
+  if(database === '')
+  return null;
+  //get the database 
+  tab = JSON.parse(localStorage.getItem(database));
+  tabFiltered = tab.filter(notFindIndexId);
+  //set the new tab
+  localStorage.setItem(database, JSON.stringify(tabFiltered));
+  //remove the global variable
+  localStorage.removeItem('searchId');
 }
 //return an objet which id and type is specified in parameter 
 export function getObjetById(id, type){
   
   var tab = [];
+  //used temporary as global variable
   localStorage.setItem('searchId', id);
   var index;
   var object = {};
   var database = '';
-  switch(type){
 
-    case 'user' : 
-      database = 'users';
-      break;
-    case 'card' : 
-      database = 'cards';
-      break;
-    case 'transfer' : 
-      database = 'transfers';
-      break;
-    case 'payin' : 
-      database = 'payins';
-      break;
-    case 'payout' : 
-      database = 'payouts';
-      break;
-  }
+  database = getDbType(type);
+  //if no database was found, return null
   if(database === '')
     return null;
+    //get the database 
   tab = JSON.parse(localStorage.getItem(database));
     index = tab.findIndex(findIndexId);
     if(index === -1)
@@ -135,37 +135,28 @@ export function getObjetById(id, type){
       console.log('didn t find the '+ type +' id');
       return null;
     }
-    object = Object.assign({}, tab[index]);
+    object =  tab[index];
 
   localStorage.removeItem('searchId');
   return object;
 }
-//return an objet which id and type is specified in parameter 
+//return a tab which contains all objets relative to a user_id and a type
 export function getTabByUserId(userId, type){
   
   var tab = [];
+    //used temporary as global variables
+
   localStorage.setItem('searchUserId', userId);
   localStorage.setItem('searchType', type);
 
   var tabFiltered = [];
   var database = '';
-  switch(type){
+  database = getDbType(type);
 
-    case 'card' : 
-      database = 'cards';
-      break;
-    case 'transfer' : 
-      database = 'transfers';
-      break;
-    case 'payin' : 
-      database = 'payins';
-      break;
-    case 'payout' : 
-      database = 'payouts';
-      break;
-  }
+  //if no database was found, return null
   if(database === '')
     return null;
+    //get the database 
   tab = JSON.parse(localStorage.getItem(database));
     tabFiltered = tab.filter(findUserId);
     if(tabFiltered.length === 0)
@@ -178,4 +169,27 @@ export function getTabByUserId(userId, type){
   localStorage.removeItem('searchType');
   console.log(tabFiltered);
   return tabFiltered;
+}
+//do a payin/out in the user wallet (inOut >= 0 = in, < 0 = out)
+export function doPayInOut(amount,inOut){
+
+  //get the Id of the user who is connected
+  const userId = parseInt(localStorage.getItem('user'));
+  console.log(userId); 
+
+  //if no user is set, stop the function
+  if(isNaN(userId))
+  {
+    return false;
+  }
+  else{
+
+    if(inOut < 0)
+      amount = -amount;
+    const user = getObjetById(userId, 'user');
+    user.balance = String(parseInt(user.balance)+ amount);
+    deleteData(userId, 'user');
+    addUser(user);
+  }
+  
 }

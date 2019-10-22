@@ -4,7 +4,7 @@ import {
   FormGroup, Label, Input,
   Button,
 } from 'reactstrap';
-import { showUsers, addUser, showCards} from '../functions/ComponentTools.js';
+import { showUsers, createUser, showCards} from '../functions/ComponentTools.js';
 
 class Inscription extends Component {
 
@@ -86,7 +86,7 @@ class Inscription extends Component {
       );
     }
     AddUser = () =>{
-      addUser(this.state.name, this.state.surname, this.state.mail, this.state.pw, "false");
+      createUser(this.state.name, this.state.surname, this.state.mail, this.state.pw, "false");
       this.setState({
         mail : "",
         pw : "",

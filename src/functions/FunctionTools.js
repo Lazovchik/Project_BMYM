@@ -29,7 +29,7 @@ function arrayMin(arr) {
     return min;
   };
   
-  function arrayMax(arr) {
+function arrayMax(arr) {
     var len = arr.length, max = -Infinity;
     while (len--) {
       if (arr[len] > max) {
@@ -38,15 +38,55 @@ function arrayMin(arr) {
     }
     return max;
   };
+//return the database name with the type passed as argument
+export function getDbType(type)
+{
+  var database = '';
+  switch(type){
+
+    case 'user' : 
+      database = 'users';
+      break;
+    case 'card' : 
+      database = 'cards';
+      break;
+    case 'transfer' : 
+      database = 'transfers';
+      break;
+    case 'payin' : 
+      database = 'payins';
+      break;
+    case 'payout' : 
+      database = 'payouts';
+      break;
+  }
+  return database;
+}
+  //add a new user in users locale storage
+export function addUser(newUser){
+
+    //import users from storage
+  var newTab = [...JSON.parse(localStorage.getItem('users'))]
+  //add it to the array
+  newTab.push(newUser);
+  //delete the precedent occurence it the local storage
+  localStorage.removeItem('users');
+  //place the new table users
+  localStorage.setItem('users', JSON.stringify(newTab));
+  }
 //return true if the item's id is the id searched
 export function findIndexId(item)
 {
   return item.id === localStorage.getItem('searchId');
 }
+//return true if the item's id is not the id searched
+export function notFindIndexId(item)
+{
+  return item.id !== localStorage.getItem('searchId');
+}
 //return true if the item's user_id is the user_id searched
 export function findUserId(item)
 {
-
   const searchUserId = localStorage.getItem('searchUserId');
 
   if(localStorage.getItem('searchType')!== 'transfer')
@@ -63,3 +103,4 @@ export function findUserId(item)
         return false; 
     }
 }
+

@@ -4,7 +4,7 @@ import {
   FormGroup, Label, Input,
   Button,
 } from 'reactstrap';
-import IsInDb, { showUsers, trout, getTabByUserId} from '../functions/ComponentTools.js';
+import IsInDb, { showUsers, deleteData, doPayInOut} from '../functions/ComponentTools.js';
 
 class Connection extends Component {
 
@@ -69,6 +69,7 @@ class Connection extends Component {
         pw : ''
       });
       console.log('user '+ localStorage.getItem('user') + ' connected');
+      doPayInOut(20, 1);
     }
     HandleMailEvent = (event) =>{
       this.setState({
