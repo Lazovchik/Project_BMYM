@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
 
 //return true if the item's mail is the mail entered by the user
 export default function filterMail(item)
 {
-  return item.email === localStorage.getItem("mail");
+  return item.email === localStorage.getItem('mail');
 }
 
 //find the id with the maximum value in users
@@ -38,3 +38,28 @@ function arrayMin(arr) {
     }
     return max;
   };
+//return true if the item's id is the id searched
+export function findIndexId(item)
+{
+  return item.id === localStorage.getItem('searchId');
+}
+//return true if the item's user_id is the user_id searched
+export function findUserId(item)
+{
+
+  const searchUserId = localStorage.getItem('searchUserId');
+
+  if(localStorage.getItem('searchType')!== 'transfer')
+  {
+    return item.user_id === searchUserId;
+  }
+  else
+    {
+      if(item.debited_wallet_id === searchUserId )
+        return true;
+      else if(item.credited_wallet_id === searchUserId)
+        return true;
+      else
+        return false; 
+    }
+}

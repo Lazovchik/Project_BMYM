@@ -4,7 +4,7 @@ import {
   FormGroup, Label, Input,
   Button,
 } from 'reactstrap';
-import IsInDb, { showUsers, trout} from '../functions/ComponentTools.js';
+import IsInDb, { showUsers, trout, getTabByUserId} from '../functions/ComponentTools.js';
 
 class Connection extends Component {
 
@@ -12,26 +12,26 @@ class Connection extends Component {
     {
       super(props);
       this.state = {
-        mail : "",
-        pw : "",
-        rerender : "yes"
+        mail : '',
+        pw : '',
+        rerender : 'yes'
       };
     }
 
     render()
     {
       return (
-        <Container className="App">
+        <Container className='App'>
             <h2>Connection</h2>
-            <Form className="form">
+            <Form className='form'>
               <Col>
                 <FormGroup>
                   <Label>Email</Label>
                   <Input
-                    type="email"
-                    name="email"
-                    id="exampleEmail"
-                    placeholder="myemail@email.com"
+                    type='email'
+                    name='email'
+                    id='exampleEmail'
+                    placeholder='myemail@email.com'
                     value={this.state.mail}
                     onChange={this.HandleMailEvent}
                   />
@@ -39,12 +39,12 @@ class Connection extends Component {
               </Col>
               <Col>
                 <FormGroup>
-                  <Label for="examplePassword">Password</Label>
+                  <Label for='examplePassword'>Password</Label>
                   <Input
-                    type="password"
-                    name="password"
-                    id="examplePassword"
-                    placeholder="********"
+                    type='password'
+                    name='password'
+                    id='examplePassword'
+                    placeholder='********'
                     value={this.state.pw}
                     onChange={this.HandlePwEvent}
                   />
@@ -62,13 +62,13 @@ class Connection extends Component {
       const indexUser = IsInDb(this.state.mail, this.state.pw);
       if( indexUser !== false)
       {
-        localStorage.setItem("user", indexUser )
+        localStorage.setItem('user', indexUser )
       }
       this.setState({
-        mail : "",
-        pw : ""
+        mail : '',
+        pw : ''
       });
-      console.log("user "+ localStorage.getItem("user") + " connected");
+      console.log('user '+ localStorage.getItem('user') + ' connected');
     }
     HandleMailEvent = (event) =>{
       this.setState({
