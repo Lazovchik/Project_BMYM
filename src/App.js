@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 
 import LogSignIn from './LogSignIn/LogSignIn';
-
+import LogIn from './LogSignIn/LogIn';
+import SignIn from './LogSignIn/SignIn';
 import './App.css';
 
 class App extends Component {
@@ -13,7 +14,10 @@ class App extends Component {
 
 	render(){
 		return(
-			<LogSignIn/>
+			<div>
+			<LogIn/>
+			<SignIn/>
+			</div>
 		);
 	}
 }
