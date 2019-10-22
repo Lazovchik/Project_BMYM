@@ -4,7 +4,7 @@ import {
   FormGroup, Label, Input,
   Button,
 } from 'reactstrap';
-import { showUsers, createUser, showCards} from '../functions/ComponentTools.js';
+import { showUsers, createUser, showCards, showPayinsOuts, showTransfers} from '../functions/ComponentTools.js';
 
 class Inscription extends Component {
 
@@ -80,7 +80,8 @@ class Inscription extends Component {
               <Button onClick={this.AddUser}>Submit</Button>
             </Form>
             {showUsers()}
-            {showCards()}
+            {showTransfers()}
+
           </Container>
    
       );

@@ -4,7 +4,7 @@ import {
   FormGroup, Label, Input,
   Button,
 } from 'reactstrap';
-import IsInDb, { showUsers, deleteData, doPayInOut} from '../functions/ComponentTools.js';
+import IsInDb, { showUsers, deleteObject, doPayInOut} from '../functions/ComponentTools.js';
 
 class Connection extends Component {
 

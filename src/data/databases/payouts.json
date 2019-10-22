@@ -2,12 +2,12 @@
     {
       "id": "0",
       "user_id" : "0",
-      "amount" : "10.00"
+      "amount" : "1000"
     },
     {
       "id": "1",
       "user_id" : "1",
-      "amount" : "20.00"
+      "amount" : "2000"
     }
     
   ]

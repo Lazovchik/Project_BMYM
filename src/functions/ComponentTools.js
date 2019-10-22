@@ -1,5 +1,5 @@
 import React from 'react';
-import filterMail, {findMaxId, findIndexId, findUserId, addUser, getDbType, notFindIndexId} from './FunctionTools'
+import filterMail, {findMaxId, findIndexId, findUserId, addObject, getDbType, notFindIndexId} from './FunctionTools'
 
 //search the combo mail/ pw in the db and alert on the status of the connection
 export default function IsInDb(mail, pw){
@@ -47,8 +47,8 @@ export function showUsers(){
       <h2>Users</h2>
       ----------------------------------------------------------------------------------------------------------
       {users.map( user =>
-        <p key ={user.id}>  Id: {user.id} {user.first_name} {user.last_name} {user.is_admin === 'false' ? <i>compte normal</i> : <b>compte admin</b>}  
-        <br /> identifiants de connexion : {user.email}  mdp :{user.password}  
+        <p key ={user.id}>  Id: {user.id}, {user.first_name} {user.last_name}, montant du portefeuille: {user.balance}  
+        <br /> identifiants de connexion : {user.email}  mdp :{user.password}  {user.is_admin === 'false' ? <i>compte normal</i> : <b>compte admin</b>}
          <br />
         ----------------------------------------------------------------------------------------------------------</p>
         
@@ -65,7 +65,43 @@ export function showCards(){
       <h2>Cards</h2>
       ----------------------------------------------------------------------------------------------------------
       {cards.map( card =>
-        <p key ={card.id}>  Id: {card.id} userId: {card.user_id} 4 digits : {card.last_4} brand: {card.brand} expiration date: {card.expired_at}
+        <p key ={card.id}>  Id: {card.id}, userId: {card.user_id}, 4 digits : {card.last_4}, brand: {card.brand}, expiration date: {card.expired_at}
+         <br />
+        ----------------------------------------------------------------------------------------------------------</p>
+        
+      )}
+       
+    </div>
+  );
+}
+//show all cards in local storage
+export function showTransfers(){
+  var transfers = JSON.parse(localStorage.getItem('transfers'));
+  return(
+    <div>
+      <h2>transfers</h2>
+      ----------------------------------------------------------------------------------------------------------
+      {transfers.map( transfer =>
+        <p key ={transfer.id}>  Id: {transfer.id}, debited wallet id: {transfer.debited_wallet_id}, credited wallet id : {transfer.credited_wallet_id}, amount: {transfer.amount}
+         <br />
+        ----------------------------------------------------------------------------------------------------------</p>
+        
+      )}
+       
+    </div>
+  );
+}
+//show all payins in local storage
+export function showPayinsOuts(type){
+  
+  const database = getDbType(type);
+  var pays = JSON.parse(localStorage.getItem(database));
+  return(
+    <div>
+      <h2>{database}</h2>
+      ----------------------------------------------------------------------------------------------------------
+      {pays.map( pays =>
+        <p key ={pays.id}>  Id: {pays.id}, userId: {pays.user_id}, amount : {pays.amount}
          <br />
         ----------------------------------------------------------------------------------------------------------</p>
         
@@ -81,19 +117,75 @@ export function createUser(fname, lname, nemail, npw, nadmin){
   const users = [...JSON.parse(localStorage.getItem('users'))];
   var newId =  findMaxId(users) ;
   newId++;
-  //create new user
+  //create new user object
   var newUser = {
     id: newId,
       first_name : fname,
       last_name: lname,
       email: nemail,
       password: npw,
-      is_admin: nadmin
+      is_admin: nadmin,
+      balance: 0
   };
-  addUser(newUser);
+  addObject(newUser, 'user');
+  //createCard(newId, "9845", "Visa", "2020-05-14");
+  //createPayinOut(newId, 5050, 'payin');
+  //createPayinOut(newId, 5050, 'payout');
+  createTransfer(2, newId, 5000);
+
+  console.log(localStorage.getItem('payouts'));
 }
-//delete the data with the id and type specified
-export function deleteData(id, type)
+//create a new card and add it to db 
+export function createCard(nUser_id, nLast_4, nBrand, nExpired_at){
+
+  //find actual max Id and increment it
+  const cards = [...JSON.parse(localStorage.getItem('cards'))];
+  var newId =  findMaxId(cards) ;
+  newId++;
+  //create new user object
+  var newCard = {
+      id: newId,
+      user_id : nUser_id,
+      last_4: nLast_4,
+      brand: nBrand,
+      expired_at: nExpired_at
+  };
+  addObject(newCard, 'card');
+}
+//create a new card and add it to db 
+export function createTransfer(nDebited_wallet_id, nCredited_wallet_id, nAmount){
+
+  //find actual max Id and increment it
+  const transfers = [...JSON.parse(localStorage.getItem('transfers'))];
+  var newId =  findMaxId(transfers) ;
+  newId++;
+  //create new user object
+  var newTransfer = {
+      id: newId,
+      debited_wallet_id : nDebited_wallet_id,
+      credited_wallet_id: nCredited_wallet_id,
+      amount: nAmount
+  };
+  addObject(newTransfer, 'transfer');
+}
+//create a new payin and add it to db 
+export function createPayinOut(nUser_id, nAmount, type){
+
+  const database = getDbType(type);
+  //find actual max Id and increment it
+  const pays = [...JSON.parse(localStorage.getItem(database))];
+  var newId =  findMaxId(pays) ;
+  newId++;
+  //create new user object
+  var newPay = {
+      id: newId,
+      user_id : nUser_id,
+      amount: nAmount
+  };
+  addObject(newPay, type);
+}
+//delete the object with the id and type specified
+export function deleteObject(id, type)
 {
   var database = '';
   var tabFiltered = [];
@@ -170,13 +262,11 @@ export function getTabByUserId(userId, type){
   console.log(tabFiltered);
   return tabFiltered;
 }
-//do a payin/out in the user wallet (inOut >= 0 = in, < 0 = out)
-export function doPayInOut(amount,inOut){
+//do a payin/out in the user wallet 
+export function doPayInOut(amount, type){
 
   //get the Id of the user who is connected
   const userId = parseInt(localStorage.getItem('user'));
-  console.log(userId); 
-
   //if no user is set, stop the function
   if(isNaN(userId))
   {
@@ -184,12 +274,13 @@ export function doPayInOut(amount,inOut){
   }
   else{
 
-    if(inOut < 0)
+    if(type === 'payout')
       amount = -amount;
     const user = getObjetById(userId, 'user');
     user.balance = String(parseInt(user.balance)+ amount);
-    deleteData(userId, 'user');
-    addUser(user);
+    deleteObject(userId, 'user');
+    addObject(user, 'user');
+    createPayinOut(userId, amount, type)
   }
   
 }

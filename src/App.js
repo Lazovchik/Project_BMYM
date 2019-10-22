@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Connection from './functional/Connection';
 import Inscription from './functional/Inscription'
 import users from './data/databases/users.json';
@@ -8,7 +7,7 @@ import payins from './data/databases/payins.json';
 import payouts from './data/databases/payouts.json';
 import transfers from './data/databases/transfers.json';
 
-import LogSignIn from './LogSignIn/LogSignIn';
+//import LogSignIn from './LogSignIn/LogSignIn';
 
 import './App.css';
 
@@ -27,7 +26,7 @@ class App extends Component {
   render()
   {
     return (
-      <Connection />
+      <Inscription />
 	  //<LogSignIn/>
     );
   }

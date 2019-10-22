@@ -1,5 +1,3 @@
-import React from 'react';
-
 
 //return true if the item's mail is the mail entered by the user
 export default function filterMail(item)
@@ -59,21 +57,24 @@ export function getDbType(type)
     case 'payout' : 
       database = 'payouts';
       break;
+    default : 
+      break;
   }
   return database;
 }
-  //add a new user in users locale storage
-export function addUser(newUser){
-
-    //import users from storage
-  var newTab = [...JSON.parse(localStorage.getItem('users'))]
+//add a new object to the database specified by type
+export function addObject(newObj, type)
+{
+  const database = getDbType(type);
+  //import users from storage
+  var newTab = JSON.parse(localStorage.getItem(database));
   //add it to the array
-  newTab.push(newUser);
+  newTab.push(newObj);
   //delete the precedent occurence it the local storage
-  localStorage.removeItem('users');
+  localStorage.removeItem(database);
   //place the new table users
-  localStorage.setItem('users', JSON.stringify(newTab));
-  }
+  localStorage.setItem(database, JSON.stringify(newTab));
+}
 //return true if the item's id is the id searched
 export function findIndexId(item)
 {
