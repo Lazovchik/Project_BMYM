@@ -69,7 +69,7 @@ class Connection extends Component {
         pw : ''
       });
       console.log('user '+ localStorage.getItem('user') + ' connected');
-      doPayInOut(20, 1);
+      doPayInOut(20, 'payin');
     }
     HandleMailEvent = (event) =>{
       this.setState({

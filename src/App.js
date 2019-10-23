@@ -24,18 +24,40 @@ class App extends Component {
       localStorage.setItem('payins', JSON.stringify(payins));
       localStorage.setItem('payouts', JSON.stringify(payouts));
       localStorage.setItem('transfers', JSON.stringify(transfers));
+      this.state = {
+          displayedComp : 'Inscription'
+      };
     }
-
+    
 	render(){
-		return(
-			<div>
-			<NavigBar/>
-      <Inscription />
-			{/* <LogIn/>
-			<SignIn/> */}
-			</div>
+		return(<div className = 'App'>
+      <header>
+			  <NavigBar onButtonClick = {this.changeDisplayedComp}/>
+      </header>
+      <div>
+        {this.switchDisplayedComp()}
+      </div>
+      </div>
 		);
-	}
+  }
+  changeDisplayedComp = (compName) => {
+    this.setState({
+      displayedComp : compName
+    });
+
+  }
+  switchDisplayedComp(){
+    switch(this.state.displayedComp)
+    {
+      case 'LogIn' : 
+          return (<LogIn onButtonClick = {this.changeDisplayedComp}/>) ;
+      case 'SignIn' :
+          return (<SignIn onButtonClick = {this.changeDisplayedComp}/>) ;
+      default :
+          return '';
+    }
+  }
 }
+
 
 export default App;

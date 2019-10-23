@@ -173,7 +173,7 @@ export function createPayinOut(nUser_id, nAmount, type){
 
   const database = getDbType(type);
   //find actual max Id and increment it
-  const pays = [...JSON.parse(localStorage.getItem(database))];
+  const pays = JSON.parse(localStorage.getItem(database));
   var newId =  findMaxId(pays) ;
   newId++;
   //create new user object
