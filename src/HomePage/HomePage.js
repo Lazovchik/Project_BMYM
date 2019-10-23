@@ -12,6 +12,7 @@ import './HomePage.css';
 import Balance from './Balance';
 import RecentActivity from './RecentActivity';
 import PayButtons from './PayButtons';
+import HomeCardList from './HomeCardList';
 
 class HomePage extends Component {
 
@@ -28,7 +29,8 @@ class HomePage extends Component {
 						<RecentActivity/>	
 					</Col>
 					<Col>
-						<PayButtons/>	
+						<PayButtons/>
+						<HomeCardList/>
 					</Col>
 				</Row>
 			</Container>

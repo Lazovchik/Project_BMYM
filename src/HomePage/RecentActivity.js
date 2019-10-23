@@ -52,10 +52,10 @@ class RecentActivity extends Component {
 								<Col className="h5 col-sm-3">
 									{this.typeMonth()}
 								</Col>
-								<Col>
+								<Col className="h5">
 									{this.state.description}
 								</Col>
-								<Col className="col-sm-3">
+								<Col className="col-sm-2">
 								</Col>
 							</Row>
 							<Row className="activity-list">
@@ -65,7 +65,7 @@ class RecentActivity extends Component {
 								<Col>
 									{this.state.operation}
 								</Col>
-								<Col className="col-sm-3 text-right">
+								<Col className="col-sm-2 text-right">
 									- {this.state.amount}
 								</Col>
 							</Row>

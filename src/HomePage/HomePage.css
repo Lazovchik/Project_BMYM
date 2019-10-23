@@ -18,7 +18,7 @@
 	min-width: 115px;
 }
 
-.activity-list{
+.activity-list, .home-card-list{
 	border-bottom: dashed;
 	border-color: #e60036;
 }

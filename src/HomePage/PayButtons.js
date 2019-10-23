@@ -16,7 +16,7 @@ class PayButtons extends Component {
 
 	render(){
 		return(
-			<Row className="pl-5 pt-3">
+			<Row className="pt-3">
 				<Col className="">
 					<Button className="home-btn">
 						Pay In
