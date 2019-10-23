@@ -1,0 +1,24 @@
+.home-main-container{
+	background-color: rgb(175, 0, 42, 0.3);
+	/*background-color: #9f9360;*/
+	
+}
+
+.default-home-card{
+	background-color: rgb(175, 0, 42);
+}
+
+/* .yellow-nb-style,.border-att, .input-att, .btn-nav{
+	border-style: solid double solid double;
+	border-color: #3B7A57;
+} */
+
+.home-btn{
+	background-color: #99cc00;
+	min-width: 115px;
+}
+
+.activity-list{
+	border-bottom: dashed;
+	border-color: #e60036;
+}

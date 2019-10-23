@@ -12,6 +12,7 @@ import transfers from './data/databases/transfers.json';
 import LogIn from './LogSignIn/LogIn';
 import SignIn from './LogSignIn/SignIn';
 import NavigBar from './NavigBar/NavigBar';
+import HomePage from './HomePage/HomePage';
 import './App.css';
 
 class App extends Component {
@@ -30,14 +31,18 @@ class App extends Component {
     }
     
 	render(){
-		return(<div className = 'App'>
-      <header>
-			  <NavigBar onButtonClick = {this.changeDisplayedComp}/>
-      </header>
-      <div>
-        {this.switchDisplayedComp()}
-      </div>
-      </div>
+		return(
+			<div className = 'App'>
+				<div>
+					  <NavigBar onButtonClick = {this.changeDisplayedComp}/>
+				</div>
+				<div>
+					{this.switchDisplayedComp()}
+				</div>
+				<div>
+					<HomePage/>
+				</div>
+			</div>
 		);
   }
   changeDisplayedComp = (compName) => {
