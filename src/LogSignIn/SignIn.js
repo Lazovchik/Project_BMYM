@@ -28,7 +28,7 @@ class SignIn extends Component {
 		return (
 			<Container className="LogSignIn rounded yellow-style">
 				<Row className="justify-content-md-center">
-					<h1>Log In</h1>
+					<h1>Sign In</h1>
 				</Row>
 				<Row className="justify-content-md-center">
 					<Form>
@@ -92,22 +92,24 @@ class SignIn extends Component {
 				</Row>
 				<Row className="justify-content-md-center">
 					<Button onClick={this.AddUser} className="btn-att">
-						Log In
+						Sign In
 					</Button>
 				</Row>
 {/* 				{showUsers()}*/}
+				<br/>
 			</Container>
 		);
 	}
 
 	AddUser = () =>{
-		createUser(this.state.name, this.state.surname, this.state.mail, this.state.pw, "false");
+		const userId = createUser(this.state.name, this.state.surname, this.state.mail, this.state.pw, "false");
 		this.setState({
 		  mail : "",
 		  pw : "",
 		  surname :"",
 		  name : ""
 		});
+		localStorage.setItem('user', userId );
 		this.props.onButtonClick('Home');
 	  }
 	  HandleSurnameEvent = (event) =>{

@@ -131,9 +131,10 @@ export function createUser(fname, lname, nemail, npw, nadmin){
   //createCard(newId, "9845", "Visa", "2020-05-14");
   //createPayinOut(newId, 5050, 'payin');
   //createPayinOut(newId, 5050, 'payout');
-  createTransfer(2, newId, 5000);
+  //createTransfer(2, newId, 5000);
 
   console.log(localStorage.getItem('payouts'));
+  return newId;
 }
 //create a new card and add it to db 
 export function createCard(nUser_id, nLast_4, nBrand, nExpired_at){

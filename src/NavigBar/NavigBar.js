@@ -21,14 +21,15 @@ class NavigBar extends Component {
 			<Navbar light expand="md" className="yellow-nb-style fixed-top">
 				<div className="mx-auto d-sm-flex d-block  flex-sm-nowrap sticky">
 				<NavbarBrand>
-					WATERMELON(font a changer)<img
+					<img
 						src={logo}
-       					width="45"
-						height="45"
+       					width="60"
+						height="60"
 						className="d-inline-block align-top"
 				   		alt="WaterMelon"
 					/>
 				</NavbarBrand>
+				<div className = 'web-page-title'> WATERMELON(font a changer)</div>
 				<NavButtons onButtonClick = {this.props.onButtonClick}/>
 				{this.buttonsToDisplay()}
 				

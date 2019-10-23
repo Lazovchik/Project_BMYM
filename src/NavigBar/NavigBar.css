@@ -4,7 +4,7 @@
 .yellow-nb-style, .bg-att{
 	background-color: #AF002A;
 	/*background-color: #9f9360;*/
-	
+	box-shadow: 1px 1px 6px #555;	
 }
 
 /* .yellow-nb-style,.border-att, .input-att, .btn-nav{
