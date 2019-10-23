@@ -17,22 +17,22 @@ class NavButtons extends Component {
 			<Collapse isOpen='true' className="text-center mr-5" navbar>	
 				<Nav navbar>
 					<NavItem>
-						<Button className="btn-nav mx-3">
+						<Button onClick = {this.handleHome} className="btn-nav mx-3">
 							Home
 						</Button>
 					</NavItem>
 					<NavItem>
-						<Button className="btn-nav mx-3">
+						<Button onClick = {this.handleAccount} className="btn-nav mx-3">
 							Account
 						</Button>
 					</NavItem>
 					<NavItem>
-						<Button className="btn-nav mx-3">
+						<Button onClick = {this.handleTransactions} className="btn-nav mx-3">
 							Transactions
 						</Button>
 					</NavItem>
 					<NavItem>
-						<Button className="btn-nav mx-3">
+						<Button onClick = {this.handleTransfer} className="btn-nav mx-3">
 							Transfer
 						</Button>
 					</NavItem>

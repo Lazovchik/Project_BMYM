@@ -53,6 +53,14 @@ class App extends Component {
           return (<LogIn onButtonClick = {this.changeDisplayedComp}/>) ;
       case 'SignIn' :
           return (<SignIn onButtonClick = {this.changeDisplayedComp}/>) ;
+      case 'Home' :
+          return ('') ;
+      case 'Account' :
+          return ('') ;
+      case 'Transactions' :
+          return ('') ;
+      case 'Transfer' :
+          return ('') ;
       default :
           return '';
     }

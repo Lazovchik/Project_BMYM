@@ -7,12 +7,22 @@ import {
 	FormGroup, Label, Input,
 	Button, Row,
 } from 'reactstrap';
+import { createUser, showUsers} from '../functions/ComponentTools.js';
 
 import './LogSignIn.css';
 
 class SignIn extends Component {
  	
-	
+	constructor(props)
+    {
+      super(props);
+      this.state = {
+        mail : "",
+        pw : "",
+        surname : "",
+        name : ""
+      };
+    }
 
 	render() {
 		return (
@@ -31,6 +41,8 @@ class SignIn extends Component {
 									id="FirstName"
 									placeholder="John"
 									className="input-att"
+									value={this.state.name}
+                    				onChange={this.HandleNameEvent}
 								/>
 							</FormGroup>
 						</Row>
@@ -43,6 +55,8 @@ class SignIn extends Component {
 									id="LastName"
 									placeholder="Smith"
 									className="input-att"
+									value={this.state.surname}
+                   				 	onChange={this.HandleSurnameEvent}
 								/>
 							</FormGroup>
 						</Row>
@@ -55,6 +69,8 @@ class SignIn extends Component {
 									id="Email"
 									placeholder="myemail@email.com"
 									className="input-att"
+									value={this.state.mail}
+                    				onChange={this.HandleMailEvent}
 								/>
 							</FormGroup>
 						</Row>
@@ -67,20 +83,53 @@ class SignIn extends Component {
 									id="Password"
 									placeholder="********"
 									className="input-att"
+									value={this.state.pw}
+                    				onChange={this.HandlePwEvent}
 								/>
 							</FormGroup>
 						</Row>	
 					</Form>
 				</Row>
 				<Row className="justify-content-md-center">
-					<Button className="btn-att">
+					<Button onClick={this.AddUser} className="btn-att">
 						Log In
 					</Button>
 				</Row>
-
+{/* 				{showUsers()}*/}
 			</Container>
 		);
 	}
+
+	AddUser = () =>{
+		createUser(this.state.name, this.state.surname, this.state.mail, this.state.pw, "false");
+		this.setState({
+		  mail : "",
+		  pw : "",
+		  surname :"",
+		  name : ""
+		});
+		this.props.onButtonClick('Home');
+	  }
+	  HandleSurnameEvent = (event) =>{
+		this.setState({
+		  surname : event.target.value,
+		});
+	  }
+	  HandleNameEvent = (event) =>{
+		this.setState({
+		  name : event.target.value,
+		});
+	  }
+	  HandleMailEvent = (event) =>{
+		this.setState({
+		  mail : event.target.value,
+		});
+	  }
+	  HandlePwEvent = (event) =>{
+		this.setState({
+		  pw : event.target.value,
+		});
+	  }
 };
 
 export default SignIn;

@@ -7,7 +7,7 @@ import {
 } from 'reactstrap';
 
 import './NavigBar.css';
-import logo from './logo.png';
+import logo from '../data/img/logo3.png';
 
 import NavButtons from './NavButtons';
 import LogInButtons from './LogInButtons';
@@ -21,7 +21,7 @@ class NavigBar extends Component {
 			<Navbar light expand="md" className="yellow-nb-style fixed-top">
 				<div className="mx-auto d-sm-flex d-block  flex-sm-nowrap sticky">
 				<NavbarBrand>
-					<img
+					WATERMELON(font a changer)<img
 						src={logo}
        					width="45"
 						height="45"
