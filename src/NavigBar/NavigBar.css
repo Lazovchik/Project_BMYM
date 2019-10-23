@@ -2,15 +2,15 @@
 /*Yellow Style*/
 
 .yellow-nb-style, .bg-att{
-	background-color: #ffcc00;
+	background-color: #AF002A;
 	/*background-color: #9f9360;*/
 	
 }
 
-.yellow-nb-style,.border-att, .input-att, .btn-nav{
+/* .yellow-nb-style,.border-att, .input-att, .btn-nav{
 	border-style: solid double solid double;
-	border-color: #ff8000;
-}
+	border-color: #3B7A57;
+} */
 
 .btn-nav{
 	/*background-color: #9f9360;*/

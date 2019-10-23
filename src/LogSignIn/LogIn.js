@@ -7,14 +7,20 @@ import {
 	FormGroup, Label, Input,
 	Button, Row,
 } from 'reactstrap';
-
+import IsInDb, { showUsers } from '../functions/ComponentTools.js';
 import './LogSignIn.css';
+import { rootCertificates } from 'tls';
 
 class LogIn extends Component {
  	
-	constructor(props){
-		super(props);	
-	}
+	constructor(props)
+    {
+      super(props);
+      this.state = {
+        mail : '',
+        pw : '',
+      };
+    }
 
 	render() {
 		return (
@@ -33,6 +39,8 @@ class LogIn extends Component {
 									id="Email"
 									placeholder="myemail@email.com"
 									className="input-att"
+									value={this.state.mail}
+									onChange={this.HandleMailEvent}
 								/>
 							</FormGroup>
 						</Row>
@@ -45,20 +53,48 @@ class LogIn extends Component {
 									id="Password"
 									placeholder="********"
 									className="input-att"
+									value={this.state.pw}
+                    				onChange={this.HandlePwEvent}
 								/>
 							</FormGroup>
 						</Row>
 					</Form>
 				</Row>
 				<Row className="justify-content-md-center">
-					<Button className="btn-att">
+					<Button onClick={this.CheckUser} className="btn-att">
 						Log In
 					</Button>
 				</Row>
-
+				<br/>
 			</Container>
 		);
 	}
+	//check if the user is in the db and approve the connection
+	CheckUser = () => {
+
+	const indexUser = IsInDb(this.state.mail, this.state.pw);
+      if( indexUser !== false)
+      {
+		localStorage.setItem('user', indexUser );
+		console.log('user '+ localStorage.getItem('user') + ' connected');
+		this.props.onButtonClick('Home');
+	  }
+	  else
+      	this.setState({
+			mail : '',
+			pw : ''
+		});
+	}
+	HandleMailEvent = (event) =>{
+		this.setState({
+		  mail : event.target.value,
+		});
+	  }
+	  HandlePwEvent = (event) =>{
+		this.setState({
+		  pw : event.target.value,
+		});
+	  }
 };
 
 export default LogIn;

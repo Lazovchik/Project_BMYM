@@ -3,17 +3,14 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import {
-	Navbar, NavbarBrand, Nav, NavItem, Collapse,
+	Nav, NavItem, Collapse,
 	Button,
 } from 'reactstrap';
 
 import './NavigBar.css';
 
 class NavButtons extends Component {
- 	
-	constructor(props){
-		super(props);	
-	}
+
 
 	render() {
 		return (
@@ -42,6 +39,18 @@ class NavButtons extends Component {
 				</Nav>
 			</Collapse>
 		);
+	}
+	handleHome = () => {
+		this.props.onButtonClick('Home');
+	}
+	handleAccount = () => {
+		this.props.onButtonClick('Account');
+	}
+	handleTransactions = () => {
+		this.props.onButtonClick('Transactions');
+	}
+	handleTransfer = () => {
+		this.props.onButtonClick('Transfer');
 	}
 }
 

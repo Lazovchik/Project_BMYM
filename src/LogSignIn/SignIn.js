@@ -12,9 +12,7 @@ import './LogSignIn.css';
 
 class SignIn extends Component {
  	
-	constructor(props){
-		super(props);	
-	}
+	
 
 	render() {
 		return (
