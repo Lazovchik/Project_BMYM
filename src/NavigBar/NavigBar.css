@@ -17,5 +17,16 @@
 	background-color: #99cc00;
 	min-width: 115px;
 }
+.web-page-title{
+	font-family: 'Allan', Helvetica, Arial, sans-serif;
+	font-size: 40px;
+	line-height: 75px;
+	position: static;
+	left: 20px;
+}
+.page-logo{
+	position: sticky;
+	left: 60px;
+}
 
 
