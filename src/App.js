@@ -37,10 +37,10 @@ class App extends Component {
 					  <NavigBar onButtonClick = {this.changeDisplayedComp}/>
 				</div>
 				<div>
-					{this.switchDisplayedComp()}
+					<HomePage/>
 				</div>
 				<div>
-					<HomePage/>
+					{this.switchDisplayedComp()}
 				</div>
 			</div>
 		);
