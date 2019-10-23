@@ -9,6 +9,9 @@ import transfers from './data/databases/transfers.json';
 
 //import LogSignIn from './LogSignIn/LogSignIn';
 
+import LogIn from './LogSignIn/LogIn';
+import SignIn from './LogSignIn/SignIn';
+import NavigBar from './NavigBar/NavigBar';
 import './App.css';
 
 class App extends Component {
@@ -22,15 +25,17 @@ class App extends Component {
       localStorage.setItem('payouts', JSON.stringify(payouts));
       localStorage.setItem('transfers', JSON.stringify(transfers));
     }
-  
-  render()
-  {
-    return (
+
+	render(){
+		return(
+			<div>
+			<NavigBar/>
       <Inscription />
-	  //<LogSignIn/>
-    );
-  }
-	
+			{/* <LogIn/>
+			<SignIn/> */}
+			</div>
+		);
+	}
 }
 
 export default App;

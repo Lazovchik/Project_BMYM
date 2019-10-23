@@ -1,0 +1,19 @@
+
+/*Yellow Style*/
+
+.yellow-style, .bg-att{
+	background-color: #ffcc00;
+	max-width:600px;
+}
+
+.yellow-style,.border-att, .input-att, .btn-att{
+	border-style: solid double solid double;
+	border-color: #ff8000;
+}
+
+.btn-att{
+	/*background-color: #9f9360;*/
+	background-color:#99cc00;
+}
+
+

@@ -1,0 +1,21 @@
+
+/*Yellow Style*/
+
+.yellow-nb-style, .bg-att{
+	background-color: #ffcc00;
+	/*background-color: #9f9360;*/
+	
+}
+
+.yellow-nb-style,.border-att, .input-att, .btn-nav{
+	border-style: solid double solid double;
+	border-color: #ff8000;
+}
+
+.btn-nav{
+	/*background-color: #9f9360;*/
+	background-color: #99cc00;
+	min-width: 115px;
+}
+
+
