@@ -30,7 +30,7 @@ class Balance extends Component {
 				<h1 className="ml-5">Welcome {this.state.first_name} {this.state.last_name}</h1>
 			</Row>
 			<Row>
-				<Card className="w-75 ml-5 default-home-card">
+				<Card className="w-100 ml-5 default-home-card">
 					<CardBody>
 					<CardTitle className="h3 text-left">
 						Watermelon Balance

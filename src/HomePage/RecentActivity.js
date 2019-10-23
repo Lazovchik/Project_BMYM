@@ -19,7 +19,8 @@ class RecentActivity extends Component {
 		this.state ={
 			date: new Date (),
 			description: "Pornhub Premium subscription",
-			operation: "Payment"
+			operation: "Payment",
+			amount: 50
 		};
 
 		this.typeMonth = this.typeMonth.bind(this);
@@ -41,7 +42,7 @@ class RecentActivity extends Component {
 		return(
 		<div>
 			<Row>
-				<Card className="w-75 ml-5 mt-5 default-home-card">
+				<Card className="w-100 ml-5 mt-5 default-home-card">
 					<CardBody>
 						<CardTitle className="h3 text-left">
 							Recent Activity
@@ -54,13 +55,18 @@ class RecentActivity extends Component {
 								<Col>
 									{this.state.description}
 								</Col>
+								<Col className="col-sm-3">
+								</Col>
 							</Row>
 							<Row className="activity-list">
 								<Col className="col-sm-3">
 									{this.state.date.getDate()}
 								</Col>
 								<Col>
-									Operation
+									{this.state.operation}
+								</Col>
+								<Col className="col-sm-3 text-right">
+									- {this.state.amount}
 								</Col>
 							</Row>
 						</CardText>
