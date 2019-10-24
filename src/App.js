@@ -43,7 +43,7 @@ class App extends Component {
 					{this.switchDisplayedComp()}
 				</div>
 				<div>
-					<AccountPage/>	
+					<AccountPage/>
 				</div>
           {/* <footer className ="footer-distributed fixed-bottom">
 
