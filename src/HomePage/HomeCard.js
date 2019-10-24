@@ -8,27 +8,20 @@ import {
 
 import './HomePage.css';
 
-import visa from './VISA.png';
-import master_card from './MC.png';
-import amex from './AMEX.png';
+import visa from '../data/img/VISA.png';
+import master_card from '../data/img/MC.png';
+import amex from '../data/img/AMEX.png';
 
 class HomeCard extends Component {
 
 	constructor(props){
 		super(props);
-
-		this.state={
-			type: "VISA",
-			number: 1234123412341234,
-			bank: "HSBC"
-		};
-	
-	this.getCardLogo = this.getCardLogo.bind(this);
+		this.getCardLogo = this.getCardLogo.bind(this);
 	}
 	
 	getCardLogo(){
-		switch (this.state.type){
-			case 'VISA':
+		switch (this.props.type){
+			case 'visa':
 				return(
 					<img 
 						src={visa}
@@ -38,22 +31,22 @@ class HomeCard extends Component {
 				   		alt="VISA"
 					/>
 				);
-			case 'AMEX':
+			case 'amex':
 				return(
 					<img 
 						src={amex}
-       					width="120"
-						height="80"
+       					width="60"
+						height="40"
 						className="d-inline-block align-top"
 				   		alt="AMEX"
 					/>
 				);
-			case 'MC':
+			case 'mastercard':
 				return(
 					<img 
 						src={master_card}
-       					width="120"
-						height="80"
+       					width="60"
+						height="40"
 						className="d-inline-block align-top"
 				   		alt="MC"
 					/>
@@ -70,20 +63,23 @@ class HomeCard extends Component {
 				</Col>
 				<Col className="">
 					<Row className="h5">
-						{this.state.bank}
+						Expiration Date: {this.props.exp_date}
 					</Row>
 					<Row>
-						{this.state.number}
+						Card num: XXXX-XXXX-XXXX-{this.props.number}
 					</Row>
 				</Col>
 			</Row>
 			<Row className="pt-3">
-				<Button className="home-btn ml-5">
+				<Button onClick = {this.handleAddCard} className="home-btn ml-5">
 					Add
 				</Button>
 			</Row>
 		</div>
 		);
+	}
+	handleAddCard = () => {
+		this.props.onButtonClick('AddCard');
 	}
 };
 

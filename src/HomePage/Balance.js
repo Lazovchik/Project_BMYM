@@ -8,7 +8,7 @@ import {
 	Button, Row, Card,
 	CardTitle, CardSubtitle, CardText, CardBody,
 } from 'reactstrap';
-
+import {getObjetById} from '../functions/ComponentTools';
 import './HomePage.css';
 
 class Balance extends Component {
@@ -16,11 +16,17 @@ class Balance extends Component {
 	constructor(props){
 		super(props);
 
-		this.state ={
-			first_name: 'John',
-			last_name: 'Smith',
-			balance: 0.0
+		this.state = {
+			first_name: '',
+			last_name: '',
+			balance: ''
 		};
+		
+
+	}
+	componentWillMount()
+	{
+		this.getUserInfo();
 	}
 
 	render(){
@@ -39,10 +45,10 @@ class Balance extends Component {
 						{this.state.balance} EUR
 					</CardSubtitle>
 					<CardText className="text-left">
-						<br/>Avaliable
+						<br/>Available
 					</CardText>
 						<Row className="justify-content-left pl-2">
-						<Button className="home-btn">
+						<Button onClick = {this.handleTransfer} className="home-btn">
 							Money Transfer
 						</Button>
 					</Row>
@@ -51,6 +57,23 @@ class Balance extends Component {
 			</Row>
 		</div>
 		);
+	}
+	//get user informations and put them into states
+	getUserInfo = () =>{
+		const user_id = parseInt(localStorage.getItem('user'));
+		const user = getObjetById(user_id, 'user');
+		const userBalance = parseFloat(user.balance / 100);
+		this.setState({
+			first_name : user.first_name,
+			last_name : user.last_name,
+			balance : userBalance
+		});
+			
+
+		
+	}
+	handleTransfer = () => {
+		this.props.onButtonClick('Transfer');
 	}
 };
 

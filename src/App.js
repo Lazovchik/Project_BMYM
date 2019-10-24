@@ -19,6 +19,7 @@ class App extends Component {
 	
 	constructor(props)
     {
+      //localStorage.clear();
       super(props);
       localStorage.setItem('users', JSON.stringify(users));
       localStorage.setItem('cards', JSON.stringify(cards));
@@ -26,9 +27,10 @@ class App extends Component {
       localStorage.setItem('payouts', JSON.stringify(payouts));
       localStorage.setItem('transfers', JSON.stringify(transfers));
       this.state = {
-          displayedComp : 'Inscription'
+          displayedComp : 'Home'
       };
     }
+    
     
 	render(){
 		return(
@@ -37,12 +39,41 @@ class App extends Component {
 					  <NavigBar onButtonClick = {this.changeDisplayedComp}/>
 				</div>
 				<div>
-					<HomePage/>
-				</div>
-				<div>
 					{this.switchDisplayedComp()}
 				</div>
-			</div>
+          {/* <footer className ="footer-distributed fixed-bottom">
+
+        <div class="footer-right">
+
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-linkedin"></i></a>
+          <a href="#"><i class="fa fa-github"></i></a>
+
+        </div>
+
+        <div class="footer-left">
+
+          <p class="footer-links">
+            <a href="#">Home</a>
+            ·
+            <a href="#">Blog</a>
+            ·
+            <a href="#">Pricing</a>
+            ·
+            <a href="#">About</a>
+            ·
+            <a href="#">Faq</a>
+            ·
+            <a href="#">Contact</a>
+          </p>
+
+          <p>Company Name &copy; 2015</p>
+        </div>
+
+      </footer>
+        */}
+       </div>
 		);
   }
   changeDisplayedComp = (compName) => {
@@ -52,6 +83,7 @@ class App extends Component {
 
   }
   switchDisplayedComp(){
+
     switch(this.state.displayedComp)
     {
       case 'LogIn' : 
@@ -59,12 +91,17 @@ class App extends Component {
       case 'SignIn' :
           return (<SignIn onButtonClick = {this.changeDisplayedComp}/>) ;
       case 'Home' :
-          return ('') ;
+          if(localStorage.getItem('user') !== null)
+            return (<HomePage onButtonClick = {this.changeDisplayedComp}/>) ;
+          else
+            return '';
       case 'Account' :
           return ('') ;
       case 'Transactions' :
           return ('') ;
       case 'Transfer' :
+          return ('') ;
+      case 'AddCard' :
           return ('') ;
       default :
           return '';

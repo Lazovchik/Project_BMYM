@@ -25,12 +25,12 @@ class HomePage extends Component {
 			<Container className="rounded home-main-container w-75 pb-5" fluid>
 				<Row>
 					<Col>
-						<Balance/>
-						<RecentActivity/>	
+						<Balance onButtonClick = {this.props.onButtonClick}/>
+						<RecentActivity onButtonClick = {this.props.onButtonClick}/>	
 					</Col>
 					<Col>
-						<PayButtons/>
-						<HomeCardList/>
+						<PayButtons onButtonClick = {this.props.onButtonClick}/>
+						<HomeCardList onButtonClick = {this.props.onButtonClick}/>
 					</Col>
 				</Row>
 			</Container>

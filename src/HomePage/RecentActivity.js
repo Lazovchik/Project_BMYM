@@ -3,11 +3,10 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import {
-	Container, Col, Form,
-	FormGroup, Label, Input,
-	Button, Row, Card,
-	CardTitle, CardSubtitle, CardText, CardBody,
+	 Col, Button, Row, Card,
+	CardTitle, CardBody,
 } from 'reactstrap';
+import { getLastTransfer, getObjetById } from '../functions/ComponentTools';
 
 import './HomePage.css';
 
@@ -17,26 +16,16 @@ class RecentActivity extends Component {
 		super(props);
 
 		this.state ={
-			date: new Date (),
-			description: "Pornhub Premium subscription",
-			operation: "Payment",
-			amount: 50
+			debWall: '',
+			credWall: '',
+			amount: ''
 		};
-
-		this.typeMonth = this.typeMonth.bind(this);
+	}
+	componentWillMount()
+	{
+		this.getTransferInfos();
 	}
 
-	typeMonth(){
-		let monthNumber = (this.state.date.getMonth());
-		let monthNames = ["January", "February", "March", "April", 
-		"May", "June", "July", "August", "September", "October", "November", "December"];
-		let monthName = monthNames[monthNumber];
-
-		// render jsx
-		return(
-			<div>{monthName}</div>
-		);
-	}
 
 	render(){
 		return(
@@ -47,31 +36,10 @@ class RecentActivity extends Component {
 						<CardTitle className="h3 text-left">
 							Recent Activity
 						</CardTitle>
-						<CardText className="text-left">
-							<Row>
-								<Col className="h5 col-sm-3">
-									{this.typeMonth()}
-								</Col>
-								<Col className="h5">
-									{this.state.description}
-								</Col>
-								<Col className="col-sm-2">
-								</Col>
-							</Row>
-							<Row className="activity-list">
-								<Col className="col-sm-3">
-									{this.state.date.getDate()}
-								</Col>
-								<Col>
-									{this.state.operation}
-								</Col>
-								<Col className="col-sm-2 text-right">
-									- {this.state.amount}
-								</Col>
-							</Row>
-						</CardText>
+						{this.displayLastActivity()}
+						<br/>
 						<Row className="justify-content-left pl-2">
-							<Button className="home-btn">
+							<Button onClick = {this.handleTransactions} className="home-btn">
 								View More
 							</Button>
 						</Row>
@@ -81,6 +49,61 @@ class RecentActivity extends Component {
 		</div>
 		);
 	}
+	handleTransactions = () => {
+		this.props.onButtonClick('Transactions');
+	}
+	displayLastActivity = () => {
+		if(this.state.debWall !== '')
+			return(
+					<div className="text-left">
+						<Row className="activity-list">
+							<Col >
+								<h3>Debited</h3>
+							</Col>
+							<Col>
+								<h3>Credited</h3>
+							</Col>
+							<Col >
+								<h3>Amount</h3>
+							</Col>
+						</Row>
+						<Row className="activity-list">
+							<Col >
+								{this.state.debWall}
+							</Col>
+							<Col>
+								{this.state.credWall}
+							</Col>
+							<Col className=" text-center">
+								- {this.state.amount}
+							</Col>
+						</Row>
+					</div>
+			);
+		else
+				return 'none'
+	}
+	//get the last transfer infos and place them into component states
+	getTransferInfos = () => {
+
+	const user_id = parseInt(localStorage.getItem('user'));
+	const lastTransfer = getLastTransfer(user_id);
+	if(lastTransfer !== null)
+	{
+		const debUser = getObjetById(parseInt(lastTransfer.debited_wallet_id), 'user');
+		const credUser = getObjetById(parseInt(lastTransfer.credited_wallet_id), 'user');
+		const debName = debUser.first_name + ' ' +debUser.last_name;
+		const credName = credUser.first_name + ' ' +credUser.last_name;
+		const transferAmount = parseFloat(lastTransfer.amount / 100)
+		this.setState({
+			debWall: debName,
+			credWall: credName,
+			amount: transferAmount
+		});
+	}
+	
+	}
+	
 };
 
 export default RecentActivity;

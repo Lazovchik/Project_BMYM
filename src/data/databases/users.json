@@ -6,7 +6,7 @@
       "email": "rpaullouis@yahoo.fr",
       "password": "123",
       "is_admin": "true",
-      "balance" : "3400"
+      "balance" : "3450"
     },
     {
       "id": "1",
@@ -15,7 +15,7 @@
       "email": "jr@hotmail.fr",
       "password": "123",
       "is_admin": "false",
-      "balance" : "2000"
+      "balance" : "2025"
     },
     {
       "id": "2",

@@ -18,17 +18,23 @@ class PayButtons extends Component {
 		return(
 			<Row className="pt-3">
 				<Col className="">
-					<Button className="home-btn">
+					<Button onClick = {this.handlePayIn} className="home-btn">
 						Pay In
 					</Button>
 				</Col>
 				<Col className="">
-					<Button className="home-btn">
+					<Button onClick = {this.handlePayOut} className="home-btn">
 						Pay Out
 					</Button>
 				</Col>
 			</Row>
 		);
+	}
+	handlePayIn = () => {
+		this.props.onButtonClick('PayIn');
+	}
+	handlePayOut = () => {
+		this.props.onButtonClick('PayOut');
 	}
 };
 

@@ -15,7 +15,6 @@ export function findMaxId(tab)
 
     return arrayMax(tabId);    
 }
-
 //code find there : https://stackoverflow.com/questions/1669190/find-the-min-max-element-of-an-array-in-javascript
 function arrayMin(arr) {
     var len = arr.length, min = Infinity;

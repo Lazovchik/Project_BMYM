@@ -3,13 +3,19 @@
       "id": "0",
       "debited_wallet_id" : "0",
       "credited_wallet_id" : "1",
-      "amount" : "10.00"
+      "amount" : "1025"
     },
     {
       "id": "1",
       "debited_wallet_id" : "1",
       "credited_wallet_id" : "2",
-      "amount" : "1000.00"
+      "amount" : "100000"
+    },
+    {
+      "id": "2",
+      "debited_wallet_id" : "2",
+      "credited_wallet_id" : "1",
+      "amount" : "200000"
     }
     
   ]

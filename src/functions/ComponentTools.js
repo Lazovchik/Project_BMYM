@@ -119,7 +119,7 @@ export function createUser(fname, lname, nemail, npw, nadmin){
   newId++;
   //create new user object
   var newUser = {
-    id: newId,
+    id: JSON.stringify(newId),
       first_name : fname,
       last_name: lname,
       email: nemail,
@@ -133,7 +133,6 @@ export function createUser(fname, lname, nemail, npw, nadmin){
   //createPayinOut(newId, 5050, 'payout');
   //createTransfer(2, newId, 5000);
 
-  console.log(localStorage.getItem('payouts'));
   return newId;
 }
 //create a new card and add it to db 
@@ -220,7 +219,7 @@ export function getObjetById(id, type){
   //if no database was found, return null
   if(database === '')
     return null;
-    //get the database 
+  //get the database 
   tab = JSON.parse(localStorage.getItem(database));
     index = tab.findIndex(findIndexId);
     if(index === -1)
@@ -260,8 +259,19 @@ export function getTabByUserId(userId, type){
   
   localStorage.removeItem('searchUserId');
   localStorage.removeItem('searchType');
-  console.log(tabFiltered);
   return tabFiltered;
+}
+//return the last transfer made by or to the user
+export function getLastTransfer(userId){
+
+  //get tab will all transfers did by or to the user
+  const transferTab = getTabByUserId(userId, 'transfer');
+  
+  //find the highest id (so the most recent) and return the transfer asociated
+  if(transferTab !== null)
+    return transferTab[findMaxId(transferTab)];
+  else 
+    return null;
 }
 //do a payin/out in the user wallet 
 export function doPayInOut(amount, type){
