@@ -35,7 +35,7 @@ class App extends Component {
           displayedComp : 'Home',
           startDate: new Date()
       };
-      updateCard(0, ' 265','any', '02/30');
+      updateCard(0, ' 1644','any', '02/30');
     }
     
     
@@ -64,7 +64,9 @@ class App extends Component {
     this.setState({
       startDate: date
     });
-    console.log(date.getMonth()+"/"+date.getYear())
+    const year = JSON.stringify(date.getFullYear()).substr(-2);
+    const month = date.getMonth() > 9 ?  date.getMonth()+1 : '0' + (date.getMonth()+1);
+    console.log( month + "/" + year);
   };
   switchDisplayedComp(){
 
