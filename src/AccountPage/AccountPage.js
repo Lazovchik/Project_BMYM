@@ -10,7 +10,7 @@ import {
 
 import './AccountPage.css';
 import AccountTenant from './AccountTenant';
-//import AccountOptions from './AccountOptions';
+import AccountOptions from './AccountOptions';
 
 class AccountPage extends Component {
 
@@ -24,6 +24,7 @@ class AccountPage extends Component {
 				<Row>
 					<Col>
 						<AccountTenant/>
+						<AccountOptions/>
 					</Col>
 					<Col>
 						
