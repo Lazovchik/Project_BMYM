@@ -291,7 +291,47 @@ export function doPayInOut(amount, type){
     user.balance = String(parseInt(user.balance)+ amount);
     deleteObject(userId, 'user');
     addObject(user, 'user');
-    createPayinOut(userId, amount, type)
+    createPayinOut(userId, amount, type);
+    return true;
   }
   
 }
+//update a card in the bdd 
+export function updateCard(cardId, number, nBrand, expirationDate){
+
+  //get the card
+  const card = getObjetById(cardId, 'card');
+  //if no card is not found, stop the function
+  if(card === null)
+  {
+    return false;
+  }
+  else{
+    //change the card number
+    if(number !== '')
+    {
+      number = number.substr(-4);
+      //if the format of the number is not correct, stop the operation
+      if(typeof(parseInt(number)) === typeof(int) || parseInt(number)/1000 < 1)
+      {
+        alert('Incorrect card number format');
+        return false;
+      }
+      card.last_4 = number;
+    }
+
+    //change the brand
+    if(nBrand !== '')
+      card.brand = nBrand;
+    //change the expiration date
+
+    
+   /*  user.balance = String(parseInt(user.balance)+ amount);
+    deleteObject(userId, 'user');
+    addObject(user, 'user');
+    createPayinOut(userId, amount, type);
+    return true; */
+  }
+  
+}
+
