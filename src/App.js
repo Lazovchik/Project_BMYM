@@ -64,6 +64,7 @@ class App extends Component {
     this.setState({
       startDate: date
     });
+    console.log(date.getMonth()+"/"+date.getYear())
   };
   switchDisplayedComp(){
 
