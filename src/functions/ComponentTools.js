@@ -269,7 +269,7 @@ export function getLastTransfer(userId){
   
   //find the highest id (so the most recent) and return the transfer asociated
   if(transferTab !== null)
-    return transferTab[findMaxId(transferTab)];
+    return getObjetById(parseInt(findMaxId(transferTab)), 'transfer');
   else 
     return null;
 }
