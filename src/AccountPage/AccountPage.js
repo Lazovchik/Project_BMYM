@@ -9,6 +9,8 @@ import {
 } from 'reactstrap';
 
 import './AccountPage.css';
+import AccountTenant from './AccountTenant';
+//import AccountOptions from './AccountOptions';
 
 class AccountPage extends Component {
 
@@ -18,10 +20,10 @@ class AccountPage extends Component {
 
 	render(){
 		return(
-			<Container className="rounded home-main-container w-75 pb-5" fluid>
+			<Container className="rounded account-main-container w-75 pb-5" fluid>
 				<Row>
 					<Col>
-							
+						<AccountTenant/>
 					</Col>
 					<Col>
 						

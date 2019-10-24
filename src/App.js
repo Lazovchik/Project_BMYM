@@ -13,6 +13,7 @@ import LogIn from './LogSignIn/LogIn';
 import SignIn from './LogSignIn/SignIn';
 import NavigBar from './NavigBar/NavigBar';
 import HomePage from './HomePage/HomePage';
+import AccountPage from './AccountPage/AccountPage';
 import './App.css';
 
 class App extends Component {
@@ -40,6 +41,9 @@ class App extends Component {
 				</div>
 				<div>
 					{this.switchDisplayedComp()}
+				</div>
+				<div>
+					<AccountPage/>	
 				</div>
           {/* <footer className ="footer-distributed fixed-bottom">
 
