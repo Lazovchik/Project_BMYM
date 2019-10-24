@@ -10,46 +10,41 @@ import {
 
 import './AccountPage.css';
 
-class AccountAdresse extends Component {
+class AccountPhone extends Component {
 
 	constructor(props){
 		super(props);
 
 		this.state={
-			line_one: "42 Pussy Street, ",
-			line_two: "69069 Big-Dick City, France",
-			adresse_mod: false
-			
+			phone: "0601020304",
+			phone_mod: false
 		};
 		
-		this.adresseMod = this.adresseMod.bind(this);
-		this.adresseDisp = this.adresseDisp.bind(this);
+		this.phoneMod = this.phoneMod.bind(this);
+		this.phoneDisp = this.phoneDisp.bind(this);
 	}
 
-	adresseMod(){
+	phoneMod(){
 		this.setState({
-			adresse_mod: !this.state.adresse_mod
+			phone_mod: !this.state.phone_mod
 		});
 	}
 
-	adresseDisp(){
-		if(!this.state.adresse_mod){
+	phoneDisp(){
+		if(!this.state.phone_mod){
 			return(
 				<div>
 					<Row>
 						<Col>
 							<Row className="h5 pt-3 pl-3">
-								{this.state.line_one}
-							</Row>
-							<Row className="h5 pl-3">
-								{this.state.line_two}
+								{this.state.phone}
 							</Row>
 						</Col>
 						<Col>
 						</Col>
 					</Row>
 					<Row className="">
-						<Button className="account-btn ml-3" onClick={this.adresseMod}>
+						<Button className="account-btn ml-3" onClick={this.phoneMod}>
 							Modify
 						</Button>
 					</Row>
@@ -65,18 +60,9 @@ class AccountAdresse extends Component {
 						<FormGroup>
 							<Input
 								type="text"
-								name="line_one"
-								id="LineOne"
-								placeholder="Number + Street"
-								className=""
-							/>
-						</FormGroup>
-						<FormGroup>
-							<Input
-								type="text"
-								name="line_two"
-								id="LineTwo"
-								placeholder="Index + City + Country"
+								name="phone"
+								id="Phone"
+								placeholder="06xxxxxxxx"
 								className=""
 							/>
 						</FormGroup>
@@ -86,7 +72,7 @@ class AccountAdresse extends Component {
 					</Col>
 				</Row>
 				<Row className="">
-					<Button className="account-btn ml-3" onClick={this.adresseMod}>
+					<Button className="account-btn ml-3" onClick={this.phoneMod}>
 						Apply
 					</Button>
 				</Row>
@@ -102,9 +88,9 @@ class AccountAdresse extends Component {
 					<CardBody>
 						<CardText>
 							<Row className="ml-1 text-uppercase">
-								Adresse
+								Phone Number
 							</Row>
-							{this.adresseDisp()}	
+							{this.phoneDisp()}	
 						</CardText>
 					</CardBody>
 				</Card>
@@ -113,4 +99,4 @@ class AccountAdresse extends Component {
 	}
 };
 
-export default AccountAdresse;
+export default AccountPhone;

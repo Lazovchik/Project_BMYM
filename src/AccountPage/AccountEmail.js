@@ -10,46 +10,42 @@ import {
 
 import './AccountPage.css';
 
-class AccountAdresse extends Component {
+class AccountEmail extends Component {
 
 	constructor(props){
 		super(props);
 
 		this.state={
-			line_one: "42 Pussy Street, ",
-			line_two: "69069 Big-Dick City, France",
-			adresse_mod: false
+			email: "bukkake_bitch@prostitute.zb",
+			email_mod: false
 			
 		};
 		
-		this.adresseMod = this.adresseMod.bind(this);
-		this.adresseDisp = this.adresseDisp.bind(this);
+		this.emailMod = this.emailMod.bind(this);
+		this.emailDisp = this.emailDisp.bind(this);
 	}
 
-	adresseMod(){
+	emailMod(){
 		this.setState({
-			adresse_mod: !this.state.adresse_mod
+			email_mod: !this.state.email_mod
 		});
 	}
 
-	adresseDisp(){
-		if(!this.state.adresse_mod){
+	emailDisp(){
+		if(!this.state.email_mod){
 			return(
 				<div>
 					<Row>
 						<Col>
 							<Row className="h5 pt-3 pl-3">
-								{this.state.line_one}
-							</Row>
-							<Row className="h5 pl-3">
-								{this.state.line_two}
+								{this.state.email}
 							</Row>
 						</Col>
 						<Col>
 						</Col>
 					</Row>
 					<Row className="">
-						<Button className="account-btn ml-3" onClick={this.adresseMod}>
+						<Button className="account-btn ml-3" onClick={this.emailMod}>
 							Modify
 						</Button>
 					</Row>
@@ -64,19 +60,10 @@ class AccountAdresse extends Component {
 					<Form className="mt-2">
 						<FormGroup>
 							<Input
-								type="text"
-								name="line_one"
-								id="LineOne"
-								placeholder="Number + Street"
-								className=""
-							/>
-						</FormGroup>
-						<FormGroup>
-							<Input
-								type="text"
-								name="line_two"
-								id="LineTwo"
-								placeholder="Index + City + Country"
+								type="email"
+								name="email"
+								id="Email"
+								placeholder="example@mail.world"
 								className=""
 							/>
 						</FormGroup>
@@ -86,7 +73,7 @@ class AccountAdresse extends Component {
 					</Col>
 				</Row>
 				<Row className="">
-					<Button className="account-btn ml-3" onClick={this.adresseMod}>
+					<Button className="account-btn ml-3" onClick={this.emailMod}>
 						Apply
 					</Button>
 				</Row>
@@ -102,9 +89,9 @@ class AccountAdresse extends Component {
 					<CardBody>
 						<CardText>
 							<Row className="ml-1 text-uppercase">
-								Adresse
+								Email Adresse
 							</Row>
-							{this.adresseDisp()}	
+							{this.emailDisp()}	
 						</CardText>
 					</CardBody>
 				</Card>
@@ -113,4 +100,4 @@ class AccountAdresse extends Component {
 	}
 };
 
-export default AccountAdresse;
+export default AccountEmail;

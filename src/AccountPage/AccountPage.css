@@ -18,7 +18,7 @@
 	min-width: 115px;
 }
 
-.account-tenant-name, .account-option-row{
+.account-tenant-name, .account-option-row, .account-email-row, .account-adresse-row{
 	border-bottom: dashed;
 	border-color: #e60036;
 }
