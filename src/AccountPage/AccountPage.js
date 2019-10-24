@@ -11,6 +11,7 @@ import {
 import './AccountPage.css';
 import AccountTenant from './AccountTenant';
 import AccountOptions from './AccountOptions';
+import AccountAdresse from './AccountAdresse';
 
 class AccountPage extends Component {
 
@@ -27,7 +28,7 @@ class AccountPage extends Component {
 						<AccountOptions/>
 					</Col>
 					<Col>
-						
+						<AccountAdresse/>	
 					</Col>
 				</Row>
 			</Container>
