@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import {
-	Col, Button, Row,
+	 Row,
 } from 'reactstrap';
 import { getTabByUserId } from '../functions/ComponentTools';
 import './HomePage.css';

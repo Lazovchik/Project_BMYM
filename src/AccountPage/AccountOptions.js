@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import {
-	Container, Col, Form,
-	FormGroup, Label, Input,
+	Col, Form,
+	FormGroup, Input,
 	Button, Row, Card, CardBody, CardText,
 } from 'reactstrap';
 

@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import {
-	Container, Col, Form,
-	FormGroup, Label, Input,
+	Col, Form,
+	FormGroup, Input,
 	Button, Row, Card, CardBody, CardText,
 } from 'reactstrap';
 
@@ -134,7 +134,7 @@ class AccountPhone extends Component {
 						<CardText>
 							<Row className=" text-uppercase">
 								<Col className="text-left">
-									Email Adresse
+									Phone Number
 								</Col>
 								<Col className="text-right">
 									<Button className="account-btn" onClick={this.addSwitch}>
