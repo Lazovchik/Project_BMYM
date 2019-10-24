@@ -299,6 +299,7 @@ export function doPayInOut(amount, type){
 //update a card in the bdd 
 export function updateCard(cardId, number, nBrand, expirationDate){
 
+  //exemple of use : updateCard(0, ' 1644','any', new Date());
   //get the card
   const card = getObjetById(cardId, 'card');
   //if no card is not found, stop the function
@@ -324,13 +325,16 @@ export function updateCard(cardId, number, nBrand, expirationDate){
     if(nBrand !== '')
       card.brand = nBrand;
     //change the expiration date
+    if(expirationDate !== '')
+    {
+      const year = JSON.stringify(expirationDate.getFullYear()).substr(-2);
+      const month = expirationDate.getMonth() > 8 ?  expirationDate.getMonth()+1 : '0' + (expirationDate.getMonth()+1);
+      card.expired_at = month + '/' + year;
+    }
 
-    
-   /*  user.balance = String(parseInt(user.balance)+ amount);
-    deleteObject(userId, 'user');
-    addObject(user, 'user');
-    createPayinOut(userId, amount, type);
-    return true; */
+    deleteObject(cardId, 'card');
+    addObject(card, 'card');
+    return true;
   }
   
 }

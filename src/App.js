@@ -15,7 +15,7 @@ import HomePage from './HomePage/HomePage';
 //CSS
 import './App.css';
 //fonctions
-import {updateCard, customInput} from './functions/ComponentTools';
+import {updateCard, showCards} from './functions/ComponentTools';
 //datepicker source : https://reactdatepicker.com/#example-custom-input
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
@@ -35,7 +35,7 @@ class App extends Component {
           displayedComp : 'Home',
           startDate: new Date()
       };
-      updateCard(0, ' 1644','any', '02/30');
+      
     }
     
     
@@ -48,9 +48,7 @@ class App extends Component {
 				</div>
 				<div>
 					{this.switchDisplayedComp()}
-				</div>
-      {this.makeDatePicker()}
-          
+				</div>      
        </div>
 		);
   }
