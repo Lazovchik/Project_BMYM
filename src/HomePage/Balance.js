@@ -3,11 +3,10 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import {
-	Container, Col, Form,
-	FormGroup, Label, Input,
 	Button, Row, Card,
 	CardTitle, CardSubtitle, CardText, CardBody,
 } from 'reactstrap';
+
 import {getObjetById} from '../functions/ComponentTools';
 import './HomePage.css';
 

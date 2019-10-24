@@ -69,6 +69,11 @@ class HomeCard extends Component {
 						Card num: XXXX-XXXX-XXXX-{this.props.number}
 					</Row>
 				</Col>
+				<Col className="col-sm-3">
+					<Button className="home-btn">
+						Modify
+					</Button>
+				</Col>
 			</Row>
 			<Row className="pt-3">
 				<Button onClick = {this.handleAddCard} className="home-btn ml-5">

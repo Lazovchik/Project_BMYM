@@ -1,0 +1,24 @@
+.account-main-container{
+	background-color: rgb(175, 0, 42, 0.3);
+	/*background-color: #9f9360;*/
+	margin-top: 2%;	
+}
+
+.account-avatar{
+	border-radius: 50%
+}
+
+.default-account-card{
+	background-color: rgb(175, 0, 42);
+
+}
+
+.account-btn{
+	background-color: #99cc00;
+	min-width: 115px;
+}
+
+.account-tenant-name, .account-option-row, .account-email-row, .account-adresse-row, .account-phone-row{
+	border-bottom: dashed;
+	border-color: #e60036;
+}
