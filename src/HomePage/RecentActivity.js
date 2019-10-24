@@ -88,6 +88,7 @@ class RecentActivity extends Component {
 
 	const user_id = parseInt(localStorage.getItem('user'));
 	const lastTransfer = getLastTransfer(user_id);
+	console.log(lastTransfer);
 	if(lastTransfer !== null)
 	{
 		const debUser = getObjetById(parseInt(lastTransfer.debited_wallet_id), 'user');
