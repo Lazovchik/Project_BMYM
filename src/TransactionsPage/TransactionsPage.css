@@ -1,0 +1,26 @@
+.transactions-main-container{
+	background-color: rgb(175, 0, 42, 0.3);
+	/*background-color: #9f9360;*/
+	margin-top: 2%;
+	
+	
+}
+
+.default-transactions-card{
+	background-color: rgb(175, 0, 42);
+}
+
+/* .yellow-nb-style,.border-att, .input-att, .btn-nav{
+	border-style: solid double solid double;
+	border-color: #3B7A57;
+} */
+
+.transactions-btn{
+	background-color: #99cc00;
+	min-width: 115px;
+}
+
+.transfers-list, .operations-list{
+	border-bottom: dashed;
+	border-color: #e60036;
+}

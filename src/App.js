@@ -13,6 +13,7 @@ import SignIn from './LogSignIn/SignIn';
 import NavigBar from './NavigBar/NavigBar';
 import HomePage from './HomePage/HomePage';
 import AccountPage from './AccountPage/AccountPage';
+import TransactionsPage from './TransactionsPage/TransactionsPage';
 
 //CSS
 import './App.css';
@@ -85,7 +86,7 @@ class App extends Component {
             return '';
           
       case 'Transactions' :
-          return ('') ;
+          return (<TransactionsPage/>) ;
       case 'Transfer' :
           return ('') ;
       case 'AddCard' :
