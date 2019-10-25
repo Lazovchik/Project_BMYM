@@ -6,7 +6,7 @@ import {
 	Col, Form,
 	Button, Row, Card, CardBody, 
 } from 'reactstrap';
-import {getObjetById, updateUser} from '../functions/ComponentTools';
+import {getObjetById, updateUser} from '../../functions/ComponentTools';
 import CountrySelect from '../others/CountrySelect';
 
 import './AccountPage.css';

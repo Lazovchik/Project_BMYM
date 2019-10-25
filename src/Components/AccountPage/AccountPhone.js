@@ -7,7 +7,7 @@ import {
 	FormGroup, Input,
 	Button, Row, Card, CardBody, 
 } from 'reactstrap';
-import {getObjetById, updateUser} from '../functions/ComponentTools';
+import {getObjetById, updateUser} from '../../functions/ComponentTools';
 
 import './AccountPage.css';
 

@@ -8,12 +8,12 @@ import payouts from './data/databases/payouts.json';
 import transfers from './data/databases/transfers.json';
 
 //import components
-import LogIn from './LogSignIn/LogIn';
-import SignIn from './LogSignIn/SignIn';
-import NavigBar from './NavigBar/NavigBar';
-import HomePage from './HomePage/HomePage';
-import AccountPage from './AccountPage/AccountPage';
-import TransactionsPage from './TransactionsPage/TransactionsPage';
+import LogIn from './Components/LogSignIn/LogIn';
+import SignIn from './Components/LogSignIn/SignIn';
+import NavigBar from './Components/NavigBar/NavigBar';
+import HomePage from './Components/HomePage/HomePage';
+import AccountPage from './Components/AccountPage/AccountPage';
+import TransactionsPage from './Components/TransactionsPage/TransactionsPage';
 import TransferPage from './TransferPage/TransferPage';
 
 //CSS
