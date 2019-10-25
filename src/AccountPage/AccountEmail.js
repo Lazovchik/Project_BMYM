@@ -20,7 +20,7 @@ class AccountEmail extends Component {
 			email: '',
 			email_mod: false,
 			add_email: false,
-			button: 'change'	
+			button: 'Change'	
 		};
 		
 	}

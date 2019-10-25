@@ -21,7 +21,7 @@ class AccountAdresse extends Component {
 			city: '',
 			adresse_mod: false,
 			add_adresse: false,
-			button: 'change'
+			button: 'Change'
 			
 		};
 	}
