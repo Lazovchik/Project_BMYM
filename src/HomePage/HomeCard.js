@@ -18,12 +18,15 @@ class HomeCard extends Component {
 		super(props);
 		//variable bidon pour l'affichage des champs
 		this.state={
-			add_card: false
+			add_card: false,
+			change_card: false
 		};
 
 		this.getCardLogo = this.getCardLogo.bind(this);
 		this.addCard = this.addCard.bind(this);
 		this.addSwitch = this.addSwitch.bind(this);
+		this.changeCard = this.changeCard.bind(this);
+		this.changeSwitch = this.changeSwitch.bind(this);
 	}
 	
 	getCardLogo(){
@@ -70,7 +73,12 @@ class HomeCard extends Component {
 			add_card: !this.state.add_card
 		});
 	}
-
+ 	
+	changeSwitch(){
+		this.setState({
+			change_card: !this.state.change_card
+		});
+	}
 	//return les champs a remplir pour ajouter une carte
 
 	addCard(){
@@ -132,39 +140,100 @@ class HomeCard extends Component {
 	}
 
 	
+	changeCard(){
+		if(!this.state.change_card){
+			return(
+				<div>
+					<Row className="pt-3 home-card-list">
+						<Col className="col-sm-3">
+							{this.getCardLogo()}		
+						</Col>
+						<Col className="">
+							<Row className="h5">
+								Expiration Date: {this.props.exp_date}
+							</Row>
+							<Row>
+								Card num: XXXX-XXXX-XXXX-{this.props.number}
+							</Row>
+						</Col>
+						<Col className="col-sm-3">
+							<Button  onClick={this.changeSwitch} className="home-btn">
+								Change
+							</Button>
+						</Col>
+					</Row>
+					<Row className="pt-3">
+						<Button onClick = {this.addSwitch} className="home-btn ml-5"> 
+							Add
+						</Button>
+					</Row>
+				</div>
+			);
+		}
+		else{
+			return(
+				<div>
+					<Row className="mt-3">
+						<Form className="mt-2 w-100">
+							<Row className="">
+							<Col className="col-sm-4 ml-3">
+								<FormGroup>
+									<Input type="select" name="Card Type" id="card_type" className="ml-4">
+										<option>Visa</option>
+										<option>Master Card</option>
+										<option>American Express</option>
+										<option>Other</option>
+									</Input>
+								</FormGroup>
+							</Col>
+							<Col className="">
+								<Row className="w-100">
+									<FormGroup className ="w-100">
+										<Input 
+											type="select" 
+											name="Expiration Date" 
+											id="exp_date" 
+											className="w-75 ml-3"
+										>
+											<option>Add DatePicker</option>
+										</Input>
+									</FormGroup>
+								</Row>
+								<Row className="text-center w-100">
+									<FormGroup className="w-100">
+										<Input
+											type="text"
+											name="CardNumber"
+											id="card_number"
+											placeholder="XXXX-XXXX-XXXX-XXXX"
+											className=" w-75 ml-3"
+										/>
+									</FormGroup>
+								</Row>
+							</Col>
+							</Row>
+						</Form>
+					</Row>
+					<Row className="account-email-row w-100 pl-4">
+						<Button className="account-btn ml-3" onClick={this.changeSwitch}>
+							Accept
+						</Button>
+						<Button className="account-btn ml-3" onClick={this.changeSwitch}>
+							Cancel
+						</Button>
+					</Row>
+				</div>
+			);
+		}
+	}
+
+
 	//!!!!!!!!!
 
 	render(){
 		return(
 		<div>
-			<Row className="pt-3 home-card-list">
-				<Col className="col-sm-3">
-					{this.getCardLogo()}		
-				</Col>
-				<Col className="">
-					<Row className="h5">
-						Expiration Date: {this.props.exp_date}
-					</Row>
-					<Row>
-						Card num: XXXX-XXXX-XXXX-{this.props.number}
-					</Row>
-				</Col>
-				<Col className="col-sm-3">
-					<Button className="home-btn">
-						Modify
-					</Button>
-				</Col>
-			</Row>
-			<Row className="pt-3">
-				<Button onClick = {this.addSwitch} className="home-btn ml-5"> 
-				{
-					//mtn le button
-					//add juste switch le variable, tu ajoutera ta fonction a toi 
-				}
-					Add
-				</Button>
-			</Row>
-			
+			{this.changeCard()}
 			{this.addCard()}
 			
 		</div>
