@@ -7,7 +7,7 @@ import {
 	CardTitle, CardSubtitle, CardText, CardBody,
 } from 'reactstrap';
 
-import {getObjetById} from '../functions/ComponentTools';
+import {getObjetById} from '../../functions/ComponentTools';
 import './HomePage.css';
 
 class Balance extends Component {

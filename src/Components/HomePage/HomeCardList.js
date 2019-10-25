@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {
 	 Row,
 } from 'reactstrap';
-import { getTabByUserId } from '../functions/ComponentTools';
+import { getTabByUserId } from '../../functions/ComponentTools';
 import './HomePage.css';
 import HomeCard from './HomeCard';
 class HomeCradList extends Component {
@@ -45,7 +45,8 @@ class HomeCradList extends Component {
 						type = {card.brand}
 						number = {card.last_4}
 						exp_date = {card.expired_at}
-						onButtonClick = {this.props.onButtonClick}/>
+						onButtonClick = {this.props.onButtonClick}
+						reRender = {this.reRenderer} />
 					});
 			return <div className = "cards"> {cardDisplayed} </div>
 		

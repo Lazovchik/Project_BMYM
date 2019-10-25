@@ -6,7 +6,7 @@ import {
 	 Col, Button, Row, Card,
 	CardTitle, CardBody,
 } from 'reactstrap';
-import { getLastTransfer, getObjetById } from '../functions/ComponentTools';
+import { getLastTransfer, getObjetById } from '../../functions/ComponentTools';
 
 import './HomePage.css';
 

@@ -7,7 +7,7 @@ import {
 } from 'reactstrap';
 
 import './NavigBar.css';
-import logo from '../data/img/logo3.png';
+import logo from '../../data/img/logo3.png';
 
 import NavButtons from './NavButtons';
 import LogInButtons from './LogInButtons';

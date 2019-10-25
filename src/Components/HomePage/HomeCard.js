@@ -7,10 +7,11 @@ import {
 } from 'reactstrap';
 
 import './HomePage.css';
+import {getObjetById, updateCard} from '../../functions/ComponentTools';
 
-import visa from '../data/img/VISA.png';
-import master_card from '../data/img/MC.png';
-import amex from '../data/img/AMEX.png';
+import visa from '../../data/img/VISA.png';
+import master_card from '../../data/img/MC.png';
+import amex from '../../data/img/AMEX.png';
 
 class HomeCard extends Component {
 
@@ -65,7 +66,7 @@ class HomeCard extends Component {
 				return '';
 		}
 	}
-	//Switches des variables bidons pour display/pas display les champs
+	//Switches des booléens pour display/pas display les champs
 	addSwitch(){
 		this.setState({
 			add_card: !this.state.add_card
@@ -135,8 +136,7 @@ class HomeCard extends Component {
 			);
 		}
 	}
-
-	//Display la carte actuel ou display les chanps pour mis a jour de la carte	
+	//Display la carte actuel ou display les champs pour mis a jour de la carte	
 	changeCard(){
 		if(!this.state.change_card){
 			return(
@@ -242,9 +242,6 @@ class HomeCard extends Component {
 			
 		</div>
 		);
-	}
-	handleAddCard = () => {
-		this.props.onButtonClick('AddCard');
 	}
 };
 

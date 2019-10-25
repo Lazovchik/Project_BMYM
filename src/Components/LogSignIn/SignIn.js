@@ -5,7 +5,7 @@ import {
 	FormGroup, Label, Input,
 	Button, Row,
 } from 'reactstrap';
-import {createUser} from '../functions/ComponentTools.js';
+import {createUser} from '../../functions/ComponentTools.js';
 import CountrySelect from '../others/CountrySelect';
 import './LogSignIn.css';
 

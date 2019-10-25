@@ -9,8 +9,8 @@ import {
 } from 'reactstrap';
 
 import './AccountPage.css';
-import def_watermel from '../data/img/def_watermel.png';
-import {getObjetById, updateUser} from '../functions/ComponentTools';
+import def_watermel from '../../data/img/def_watermel.png';
+import {getObjetById, updateUser} from '../../functions/ComponentTools';
 
 
 class AccountTenant extends Component {
@@ -141,9 +141,9 @@ HandleLastNameEvent = (event) =>{
   }
 //boolean responsible for displaying modification form or clients name and surname
 changeModOrApp = () =>{
-	if(this.state.nationality_mod)
+	if(this.state.name_modif)
 		{
-			updateUser(this.first_name ,this.last_name,'','','','','','');
+			updateUser(this.state.first_name ,this.state.last_name,'','','','','','');
 			this.getUserInfo();
 		}
 	this.setState({

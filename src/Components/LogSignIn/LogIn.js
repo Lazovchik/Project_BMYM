@@ -7,7 +7,7 @@ import {
 	FormGroup, Label, Input,
 	Button, Row,
 } from 'reactstrap';
-import IsInDb from '../functions/ComponentTools.js';
+import IsInDb from '../../functions/ComponentTools.js';
 import './LogSignIn.css';
 
 class LogIn extends Component {
