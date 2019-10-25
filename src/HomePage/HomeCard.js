@@ -65,10 +65,6 @@ class HomeCard extends Component {
 				return '';
 		}
 	}
-	
-	//!!!!!!!!!
-	//New Stuff to add Card (Fields)
-
 	//Switches des variables bidons pour display/pas display les champs
 	addSwitch(){
 		this.setState({
@@ -82,7 +78,6 @@ class HomeCard extends Component {
 		});
 	}
 	//return les champs a remplir pour ajouter une carte
-
 	addCard(){
 		if(this.state.add_card){
 			return(
@@ -171,6 +166,7 @@ class HomeCard extends Component {
 							</Row>
 						</Col>
 					</Row>
+					<br/>
 					<Row className="pt-3">
 						<Button onClick = {this.addSwitch} className="home-btn ml-5"> 
 							Add
@@ -235,7 +231,6 @@ class HomeCard extends Component {
 			);
 		}
 	}
-
 
 	//!!!!!!!!!
 

@@ -10,6 +10,12 @@ import './HomePage.css';
 import HomeCard from './HomeCard';
 class HomeCradList extends Component {
 
+	constructor(props){
+		super(props);
+		this.state = {
+			rerender : true
+		}
+	}
 	render(){
 		return(
 			<div>
@@ -43,6 +49,11 @@ class HomeCradList extends Component {
 					});
 			return <div className = "cards"> {cardDisplayed} </div>
 		
+	}
+	reRenderer(){
+		this.setState({
+			rerender: !this.rerender
+		});
 	}
 };
 
