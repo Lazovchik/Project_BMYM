@@ -16,7 +16,7 @@ class HomeCard extends Component {
 
 	constructor(props){
 		super(props);
-		//variable bidon pour l'affichage des champs
+		//variables bidons pour l'affichage des champs
 		this.state={
 			add_card: false,
 			change_card: false
@@ -67,7 +67,7 @@ class HomeCard extends Component {
 	//!!!!!!!!!
 	//New Stuff to add Card (Fields)
 
-	//Variable bidon pour display/pas display les champs
+	//Switches des variables bidons pour display/pas display les champs
 	addSwitch(){
 		this.setState({
 			add_card: !this.state.add_card
@@ -139,7 +139,7 @@ class HomeCard extends Component {
 		}
 	}
 
-	
+	//Display la carte actuel ou display les chanps pour mis a jour de la carte	
 	changeCard(){
 		if(!this.state.change_card){
 			return(
