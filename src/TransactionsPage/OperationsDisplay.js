@@ -17,8 +17,7 @@ class OperationsDisplay extends Component {
 		
 		this.state={
 			pay_in_out: false, //si false=> payin, si true=> payout
-			amount: 5,
-			operation: ""
+			amount: 5
 		}
 
 		this.operationDisplay = this.operationDisplay.bind(this);
@@ -27,18 +26,20 @@ class OperationsDisplay extends Component {
 	//pour savoir si l'operation est payin ou payout, et la display correctement
 
 	operationDisplay(){
-
-		if(this.state.pay_in_out){ //si c'est un payout
-			this.setState({operation : "Pay Out"});
+		
+		let operation = "default";
+			
+		if(this.state.pay_in_out){ //si c'est un payout	
+			 operation= "Pay Out";
 		}
 		else{
-			this.setState({operation : "Pay In"});
+			 operation = "Pay In";
 		}
 
 		return(
 			<Row className="transfers-list">
 				<Col>
-					{this.state.operation}
+					{operation}
 				</Col>
 				<Col>
 					{this.state.amount}
