@@ -159,9 +159,16 @@ class HomeCard extends Component {
 							</Row>
 						</Col>
 						<Col className="col-sm-3">
-							<Button  onClick={this.changeSwitch} className="home-btn">
-								Change
-							</Button>
+							<Row>
+								<Button  onClick={this.changeSwitch} className="home-btn">
+									Change
+								</Button>
+							</Row>
+							<Row>
+								<Button  className="home-btn mt-1">
+									Delete
+								</Button>
+							</Row>
 						</Col>
 					</Row>
 					<Row className="pt-3">
