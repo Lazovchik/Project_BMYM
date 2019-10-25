@@ -14,6 +14,7 @@ import NavigBar from './Components/NavigBar/NavigBar';
 import HomePage from './Components/HomePage/HomePage';
 import AccountPage from './Components/AccountPage/AccountPage';
 import TransactionsPage from './Components/TransactionsPage/TransactionsPage';
+import TransferPage from './Components/TransferPage/TransferPage';
 
 //CSS
 import './App.css';
@@ -79,7 +80,7 @@ class App extends Component {
       case 'Transactions' :
           return (<TransactionsPage/>) ;
       case 'Transfer' :
-          return ('') ;
+          return (<TransferPage/>) ;
       case 'AddCard' :
           return ('') ;
       default :
