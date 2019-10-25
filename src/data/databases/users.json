@@ -6,7 +6,11 @@
       "email": "rpaullouis@yahoo.fr",
       "password": "123",
       "is_admin": "true",
-      "balance" : "3450"
+      "balance" : "3450",
+      "origin": "France",
+      "street": "32 avenue de la guibole",
+      "city": "92400 Courbevoie",
+      "phone": "0608090405"
     },
     {
       "id": "1",
@@ -15,7 +19,11 @@
       "email": "jr@hotmail.fr",
       "password": "123",
       "is_admin": "false",
-      "balance" : "2025"
+      "balance" : "2025",
+      "origin": "France",
+      "street": "32 avenue de la guibole",
+      "city": "92400 Courbevoie",
+      "phone": "0605090405"
     },
     {
       "id": "2",
@@ -24,6 +32,12 @@
       "email": "RussiaBoss@kgb.com",
       "password": "123",
       "is_admin": "false",
-      "balance" : "100000"
+      "balance" : "100000",
+      "origin": "France",
+      "street": "13 rue du loup de mer",
+      "city": "92400 Courbevoie",
+      "phone": "0705090405"
+
+
     }
   ]

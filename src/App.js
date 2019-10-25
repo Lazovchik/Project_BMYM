@@ -17,11 +17,10 @@ import AccountPage from './AccountPage/AccountPage';
 //CSS
 import './App.css';
 //fonctions
-import {updateCard, showCards} from './functions/ComponentTools';
+//import {showUsers} from './functions/ComponentTools';
 //datepicker source : https://reactdatepicker.com/#example-custom-input
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
-import { thisExpression } from '@babel/types';
 class App extends Component {
 	
 	constructor(props)
@@ -40,21 +39,15 @@ class App extends Component {
       
     }
     
-    
 	render(){
-    
 		return(
 			<div className = 'App'>
-				<div>
-					  <NavigBar onButtonClick = {this.changeDisplayedComp}/>
-				</div>
-				<div>
-					{this.switchDisplayedComp()}
-				</div>
-				<div>
-					<AccountPage/>
-				</div>
-          
+          <div>
+              <NavigBar onButtonClick = {this.changeDisplayedComp}/>
+          </div>
+          <div>
+            {this.switchDisplayedComp()}
+          </div>
        </div>
 		);
   }
@@ -86,7 +79,11 @@ class App extends Component {
           else
             return '';
       case 'Account' :
-          return ('') ;
+          if(localStorage.getItem('user') !== null)
+            return  (<AccountPage onButtonClick = {this.changeDisplayedComp}/>) ;
+          else
+            return '';
+          
       case 'Transactions' :
           return ('') ;
       case 'Transfer' :

@@ -14,7 +14,7 @@ class NavButtons extends Component {
 
 	render() {
 		return (
-			<Collapse isOpen='true' className="text-center mr-5" navbar>	
+			<Collapse isOpen = {true} className="text-center mr-5" navbar>	
 				<Nav navbar>
 					<NavItem>
 						<Button onClick = {this.handleHome} className="btn-nav mx-3">

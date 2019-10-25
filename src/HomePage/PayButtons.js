@@ -10,10 +10,6 @@ import './HomePage.css';
 
 class PayButtons extends Component {
 
-	constructor(props){
-		super(props);
-	}
-
 	render(){
 		return(
 			<Row className="pt-3">

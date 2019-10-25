@@ -12,7 +12,6 @@ import logo from '../data/img/logo3.png';
 import NavButtons from './NavButtons';
 import LogInButtons from './LogInButtons';
 import LogOutButton from './LogOutButton';
-import { exists } from 'fs';
 
 class NavigBar extends Component {
  	
@@ -31,7 +30,7 @@ class NavigBar extends Component {
 								
 							/>
 						</NavbarBrand>
-						<div class = 'web-page-title'> WATERMELON</div>
+						<div className = 'web-page-title'> WATERMELON</div>
 					
 				<NavButtons onButtonClick = {this.props.onButtonClick}/>
 				{this.buttonsToDisplay()}

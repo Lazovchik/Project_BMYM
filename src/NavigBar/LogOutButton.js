@@ -11,10 +11,10 @@ import './NavigBar.css';
 
 class LogOutButton extends Component {
  
-
+//collapse avait isOpen='true' en props = warnings ?
 	render() {
 		return (
-			<Collapse isOpen='true' className="text-center" navbar>
+			<Collapse  className="text-center" navbar>
 				<Nav navbar>
 					<NavItem>
 						<Button onClick = {this.handleLogOut} className="btn-nav mx-3">

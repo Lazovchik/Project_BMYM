@@ -4,10 +4,9 @@
 .yellow-style, .bg-att{
 	background-color: #AF002A;
 	max-width:600px;
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	position: relative;
+	Margin-top: 5%;
+
 }
 
 .yellow-style,.border-att, .input-att, .btn-att{

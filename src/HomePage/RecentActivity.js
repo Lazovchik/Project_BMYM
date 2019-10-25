@@ -21,7 +21,7 @@ class RecentActivity extends Component {
 			amount: ''
 		};
 	}
-	componentWillMount()
+	componentDidMount()
 	{
 		this.getTransferInfos();
 	}
