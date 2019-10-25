@@ -14,10 +14,6 @@ import HomeCardList from './HomeCardList';
 
 class HomePage extends Component {
 
-	constructor(props){
-		super(props);
-	}
-
 	render(){
 		return(
 			<Container className="rounded home-main-container w-75 pb-5" fluid>

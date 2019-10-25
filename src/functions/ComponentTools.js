@@ -47,7 +47,7 @@ export function showUsers(){
       <h2>Users</h2>
       ----------------------------------------------------------------------------------------------------------
       {users.map( user =>
-        <p key ={user.id}>  Id: {user.id}, {user.first_name} {user.last_name}, montant du portefeuille: {user.balance}  
+        <p key ={user.id}>  Id: {user.id}, {user.first_name} {user.last_name}, montant du portefeuille: {user.balance}, pays: {user.origin}   
         <br /> identifiants de connexion : {user.email}  mdp :{user.password}  {user.is_admin === 'false' ? <i>compte normal</i> : <b>compte admin</b>}
          <br />
         ----------------------------------------------------------------------------------------------------------</p>
@@ -111,7 +111,7 @@ export function showPayinsOuts(type){
   );
 }
 //create a new user and add it to db 
-export function createUser(fname, lname, nemail, npw, nadmin){
+export function createUser(fname, lname, nemail, npw, nadmin, nOrigin, nStreet, nCity, nPhone){
 
   //find actual max Id and increment it
   const users = [...JSON.parse(localStorage.getItem('users'))];
@@ -125,13 +125,13 @@ export function createUser(fname, lname, nemail, npw, nadmin){
       email: nemail,
       password: npw,
       is_admin: nadmin,
-      balance: 0
+      balance: 0,
+      origin: nOrigin,
+      street: nStreet,
+      city: nCity,
+      phone: nPhone
   };
   addObject(newUser, 'user');
-  //createCard(newId, "9845", "Visa", "2020-05-14");
-  //createPayinOut(newId, 5050, 'payin');
-  //createPayinOut(newId, 5050, 'payout');
-  //createTransfer(2, newId, 5000);
 
   return newId;
 }
@@ -291,7 +291,97 @@ export function doPayInOut(amount, type){
     user.balance = String(parseInt(user.balance)+ amount);
     deleteObject(userId, 'user');
     addObject(user, 'user');
-    createPayinOut(userId, amount, type)
+    createPayinOut(userId, amount, type);
+    return true;
   }
   
 }
+//update a card in the bdd 
+export function updateCard(cardId, number, nBrand, expirationDate){
+
+  //exemple of use : updateCard(0, ' 1644','any', new Date());
+  //get the card
+  const card = getObjetById(cardId, 'card');
+  //if no card is not found, stop the function
+  if(card === null)
+  {
+    return false;
+  }
+  else{
+    //change the card number
+    if(number !== '')
+    {
+      number = number.substr(-4);
+      //if the format of the number is not correct, stop the operation
+      if(typeof(parseInt(number)) === typeof(int) || parseInt(number)/1000 < 1)
+      {
+        alert('Incorrect card number format');
+        return false;
+      }
+      card.last_4 = number;
+    }
+
+    //change the brand
+    if(nBrand !== '')
+      card.brand = nBrand;
+    //change the expiration date
+    if(expirationDate !== '')
+    {
+      const year = JSON.stringify(expirationDate.getFullYear()).substr(-2);
+      const month = expirationDate.getMonth() > 8 ?  expirationDate.getMonth()+1 : '0' + (expirationDate.getMonth()+1);
+      card.expired_at = month + '/' + year;
+    }
+
+    deleteObject(cardId, 'card');
+    addObject(card, 'card');
+    return true;
+  }
+  
+}
+//update a user in the bdd 
+export function updateUser( first_name, last_name,
+   email, password, origin, street, city, phone ){
+
+  //get the Id of the user who is connected
+  const userId = parseInt(localStorage.getItem('user'));
+  //exemple of use : updateCard(0, ' 1644','any', new Date());
+  //get the card
+  const user = getObjetById(userId, 'user');
+  //if no card is not found, stop the function
+  if(user === null)
+  {
+    return false;
+  }
+  else{
+    //change the first_name
+    if(first_name !== '')
+      user.first_name = first_name;
+      //change the last_name
+    if(last_name !== '')
+      user.last_name = last_name;
+      //change the email
+    if(email !== '')
+      user.email = email;
+      //change the password
+    if(password !== '')
+      user.password = password;
+      //change the origin
+    if(origin !== '')
+      user.origin = origin;
+      //change the street
+    if(street !== '')
+      user.street = street;
+     //change the city
+    if(city !== '')
+      user.city = city;
+    //change the phone
+    if(phone !== '')
+      user.phone = phone;
+
+    deleteObject(userId, 'user');
+    addObject(user, 'user');
+    return true;
+  }
+  
+}
+

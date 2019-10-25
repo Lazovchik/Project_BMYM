@@ -10,10 +10,6 @@ import './HomePage.css';
 import HomeCard from './HomeCard';
 class HomeCradList extends Component {
 
-	constructor(props){
-		super(props);
-	}
-
 	render(){
 		return(
 			<div>
@@ -45,7 +41,7 @@ class HomeCradList extends Component {
 						exp_date = {card.expired_at}
 						onButtonClick = {this.props.onButtonClick}/>
 					});
-			return <div class = "cards"> {cardDisplayed} </div>
+			return <div className = "cards"> {cardDisplayed} </div>
 		
 	}
 };

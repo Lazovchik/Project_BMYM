@@ -5,8 +5,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {
 	Col, Form,
 	FormGroup, Input,
-	Button, Row, Card, CardBody, CardText,
+	Button, Row, Card, CardBody, 
 } from 'reactstrap';
+import {getObjetById, updateUser} from '../functions/ComponentTools';
 
 import './AccountPage.css';
 
@@ -16,24 +17,78 @@ class AccountEmail extends Component {
 		super(props);
 
 		this.state={
-			email: "bukkake_bitch@prostitute.zb",
+			email: '',
 			email_mod: false,
-			add_email: false	
+			add_email: false,
+			button: 'change'	
 		};
 		
-		this.emailMod = this.emailMod.bind(this);
-		this.emailDisp = this.emailDisp.bind(this);
-		this.addEmail = this.addEmail.bind(this);
-		this.addSwitch = this.addSwitch.bind(this);
+	}
+	componentDidMount()
+	{
+		this.getUserInfo();
+	}
+	
+	render(){
+		return(
+			<Row>
+				<Card className="w-100 mt-3 ml-5 default-account-card">
+					<CardBody>
+						<div>
+							<Row className=" text-uppercase">
+								<Col className="text-left">
+									Email Adresse
+								</Col>
+								<Col className="text-right">
+									{/* <Button className="account-btn" onClick={this.addSwitch}>
+										Add
+									</Button> */}
+									<Button className="account-btn ml-3" onClick={this.emailMod}>
+										{this.state.button}
+									</Button>
+								</Col>
+							</Row>
+							{this.emailDisp()}
+							 {/*this.addEmail()*/}
+						</div>
+					</CardBody>
+				</Card>
+			</Row>
+		);
 	}
 
-	emailMod(){
+	HandleEmailEvent = (event) =>{
+		this.setState({
+			email : event.target.value,
+		});
+	  }
+	  //get user informations and put them into states
+	getUserInfo = () =>{
+		const user_id = parseInt(localStorage.getItem('user'));
+		const user = getObjetById(user_id, 'user');
+		this.setState({
+			email : user.email
+		});
+		
+		}
+	emailMod = () =>{
+		if(this.state.email_mod)
+		{
+			updateUser('','', this.state.email,'','', '', '', '');
+			this.getUserInfo();
+			this.setState({
+				button: 'Change'
+			});
+		}
+		else
+			this.setState({
+				button: 'Cancel'
+			});
 		this.setState({
 			email_mod: !this.state.email_mod
 		});
 	}
-
-	emailDisp(){
+	emailDisp = () =>{
 		if(!this.state.email_mod){
 			return(
 				<div>
@@ -46,14 +101,14 @@ class AccountEmail extends Component {
 						<Col>
 						</Col>
 					</Row>
-					<Row className="account-email-row">
-						<Button className="account-btn ml-3" onClick={this.emailMod}>
-							Modify
+					 <Row className="account-email-row">
+						{/* <Button className="account-btn ml-3" onClick={this.emailMod}>
+							Change
 						</Button>
 						<Button className="account-btn ml-3" onClick={this.phoneMod}>
 							Delete
-						</Button>
-					</Row>
+						</Button> */}
+					</Row> 
 				</div>
 			);
 		}
@@ -70,6 +125,8 @@ class AccountEmail extends Component {
 								id="Email"
 								placeholder="example@mail.world"
 								className=""
+								value={this.state.email}
+								onChange={this.HandleEmailEvent}
 							/>
 						</FormGroup>
 					</Form>
@@ -86,12 +143,12 @@ class AccountEmail extends Component {
 		);
 		}
 	}
-	addSwitch(){
+	addSwitch = () =>{
 		this.setState({
 			add_email: !this.state.add_email
 		});
 	}
-	addEmail(){
+	addEmail = () =>{
 		if(this.state.add_email){
 			return(
 				<div>
@@ -124,31 +181,7 @@ class AccountEmail extends Component {
 			);
 		}
 	}
-
-	render(){
-		return(
-			<Row>
-				<Card className="w-100 mt-3 ml-5 default-account-card">
-					<CardBody>
-						<CardText>
-							<Row className=" text-uppercase">
-								<Col className="text-left">
-									Email Adresse
-								</Col>
-								<Col className="text-right">
-									<Button className="account-btn" onClick={this.addSwitch}>
-										Add
-									</Button>
-								</Col>
-							</Row>
-							{this.emailDisp()}
-							{this.addEmail()}
-						</CardText>
-					</CardBody>
-				</Card>
-			</Row>
-		);
-	}
+	
 };
 
 export default AccountEmail;

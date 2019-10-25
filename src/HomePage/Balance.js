@@ -23,7 +23,7 @@ class Balance extends Component {
 		
 
 	}
-	componentWillMount()
+	componentDidMount()
 	{
 		this.getUserInfo();
 	}
@@ -71,6 +71,7 @@ class Balance extends Component {
 
 		
 	}
+	//display transfer compo
 	handleTransfer = () => {
 		this.props.onButtonClick('Transfer');
 	}

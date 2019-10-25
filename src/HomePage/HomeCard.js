@@ -61,6 +61,8 @@ class HomeCard extends Component {
 				   		alt="MC"
 					/>
 				);
+			default :
+				return '';
 		}
 	}
 	
