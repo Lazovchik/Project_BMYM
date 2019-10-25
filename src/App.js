@@ -18,10 +18,8 @@ import TransactionsPage from './Components/TransactionsPage/TransactionsPage';
 //CSS
 import './App.css';
 //fonctions
-//import {showUsers} from './functions/ComponentTools';
-//datepicker source : https://reactdatepicker.com/#example-custom-input
+//import {showCards} from './functions/ComponentTools';
 import "react-datepicker/dist/react-datepicker.css";
-import DatePicker from "react-datepicker";
 class App extends Component {
 	
 	constructor(props)
@@ -58,14 +56,7 @@ class App extends Component {
       displayedComp : compName
     });
   }
-  handleDatePicker = date => {
-    this.setState({
-      startDate: date
-    });
-    const year = JSON.stringify(date.getFullYear()).substr(-2);
-    const month = date.getMonth() > 9 ?  date.getMonth()+1 : '0' + (date.getMonth()+1);
-    console.log( month + "/" + year);
-  };
+  
   switchDisplayedComp(){
 
     switch(this.state.displayedComp)
@@ -95,23 +86,7 @@ class App extends Component {
           return '';
     }
   }
-  makeDatePicker = () => {
-    const CustomInput = ({ value, onClick }) => (
-      <button className="btn btn-light" onClick={onClick}>
-        {value}
-      </button>
-    );
-    return (
-      <DatePicker
-        customInput={<CustomInput />}
-        selected={this.state.startDate}
-        onChange={this.handleDatePicker}
-        dateFormat="MM/yy"
-        showMonthYearPicker
-        
-      />
-    );
-  };
+  
 }
 
 

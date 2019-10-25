@@ -65,7 +65,6 @@ class AccountAdresse extends Component {
 		this.setState({
 			city : event.target.value,
 		});
-		console.log('this is the city:' + this.state.city);
 	  }
 	//get user informations and put them into states
 	getUserInfo = () =>{
@@ -156,7 +155,7 @@ class AccountAdresse extends Component {
 					</Col>
 				</Row>
 				<Row className="account-adresse-row">
-					<Button className="account-btn ml-3" onClick={this.adresseMod}>
+					<Button className="account-btn ml-3 my-2" onClick={this.adresseMod}>
 						Apply
 					</Button>
 				</Row>

@@ -50,15 +50,15 @@ render(){
 									alt="avatar"
 								/>
 							</Col>
-							<Col className="pt-3">
-								<Row className="account-tenant-name">
-									<Col>
+							<Col className="pt-3 ">
+								<Row className="account-tenant-name ">
+									<Col className=" col-sm-7">
 										{this.nameModification()}
 										<Row className="h5">
 											Account created in 2019
 										</Row>
 									</Col>
-									<Col className="pt-3 col-sm-4">
+									<Col className="pt-3 col-sm-3">
 										{this.buttonModOrApp()}
 									</Col>
 								</Row>
@@ -155,14 +155,14 @@ changeModOrApp = () =>{
 buttonModOrApp = () =>{
 	if(this.state.name_modif){
 		return(
-			<Button className="account-btn" onClick={this.changeModOrApp}>
+			<Button className="account-btn ml-4" onClick={this.changeModOrApp}>
 				Apply
 			</Button>
 		);
 	}
 	else{
 		return(
-			<Button className="account-btn" onClick={this.changeModOrApp}>
+			<Button className="account-btn ml-4" onClick={this.changeModOrApp}>
 				Change
 			</Button>
 		);

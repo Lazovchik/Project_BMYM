@@ -7,11 +7,13 @@ import {
 } from 'reactstrap';
 
 import './HomePage.css';
-import {getObjetById, updateCard} from '../../functions/ComponentTools';
+import { updateCard, makeDatePicker, formatDate, deleteObject } from '../../functions/ComponentTools';
 
 import visa from '../../data/img/VISA.png';
 import master_card from '../../data/img/MC.png';
 import amex from '../../data/img/AMEX.png';
+import other from '../../data/img/OTHER.png';
+
 
 class HomeCard extends Component {
 
@@ -19,18 +21,149 @@ class HomeCard extends Component {
 		super(props);
 		//variables bidons pour l'affichage des champs
 		this.state={
-			add_card: false,
-			change_card: false
+			change_card: false,
+			startDate: new Date(),
+			number: '...'+this.props.number,
+			type: this.props.type
 		};
-
-		this.getCardLogo = this.getCardLogo.bind(this);
-		this.addCard = this.addCard.bind(this);
-		this.addSwitch = this.addSwitch.bind(this);
-		this.changeCard = this.changeCard.bind(this);
-		this.changeSwitch = this.changeSwitch.bind(this);
 	}
 	
-	getCardLogo(){
+	
+	render(){
+		return(
+		<div>
+			{this.changeCard()}
+		</div>
+		);
+	}
+	handleDatePicker = date => {
+		this.setState({
+			startDate: date
+		});
+	};
+	handleNumber = (event) => {
+		this.setState({
+			number: event.target.value
+		});
+	};
+	handleType = (event) => {
+		this.setState({
+			type: event.target.value
+		});
+	};
+	deleteUserCard = () =>{
+		deleteObject(this.props.card_id, 'card');
+		this.props.reRender();
+	}
+	//update a card and rerender all cards lists
+	updateUserCard= () =>{
+
+		var date = '';
+		if(this.state.startDate !== null)
+			 date = formatDate(this.state.startDate)
+			
+		updateCard(this.props.card_id, this.state.number, this.state.type, date);
+		this.changeSwitch();
+		this.props.reRender();		
+	}
+	changeSwitch = () =>{
+		this.setState({
+			change_card: !this.state.change_card
+		});
+	}
+	//Display la carte actuel ou display les champs pour mis a jour de la carte	
+	changeCard = () =>{
+		if(!this.state.change_card){
+			return(
+				<div>
+					<Row className="pt-3 home-card-list">
+						<Col className="col-sm-3">
+							{this.getCardLogo()}		
+						</Col>
+						<Col className="">
+							<Row className="h5">
+								Expiration Date: {this.props.exp_date}
+							</Row>
+							<Row>
+								Card num: XXXX-XXXX-XXXX-{this.props.number}
+							</Row>
+						</Col>
+						<Col className="col-sm-3">
+							<Row>
+								<Button  onClick={this.changeSwitch} className="home-btn my-1 btn-sm">
+									Change
+								</Button>
+							</Row>
+							<Row>
+								<Button onClick={this.deleteUserCard} className="home-btn my-1  btn-sm">
+									Delete
+								</Button>
+							</Row>
+						</Col>
+					</Row>
+				</div>
+			);
+		}
+		else{
+			return(
+				<div>
+					<Row className="mt-3">
+						<Form className="mt-2 w-100">
+							<Row className="">
+								<Col className="col-sm-4 ml-3">
+									<FormGroup>
+										<Input value ={this.state.type} onChange={this.handleType} type="select" name="Card Type" id="card_type" className="ml-4">
+											<option value='visa'>Visa</option>
+											<option value='mastercard'>Master Card</option>
+											<option value='amex'>American Express</option>
+											<option value='other'>Other</option>
+										</Input>
+									</FormGroup>
+								</Col>
+								<Col className="">
+									<Row className="col-sm-4">
+										{makeDatePicker(this.state.startDate, this.handleDatePicker)}
+									</Row>
+									<Row className="col-sm-4">
+										<br/>
+									</Row>
+									<Row className="col-sm-4">
+									<br/>
+									</Row>
+								</Col>
+							</Row>
+							<Row className="text-center w-100">
+								<Col className="col-sm-4 ml-2">
+								</Col>
+								<Col className="col-sm-6 ml-3">
+										<FormGroup className="w-100">
+											<Input
+												type="text"
+												name="CardNumber"
+												id="card_number"
+												placeholder="XXXX-XXXX-XXXX-XXXX"
+												className=" w-75 ml-3"
+												value= {this.state.number}
+												onChange={this.handleNumber}
+											/>
+										</FormGroup>
+								</Col>
+							</Row>
+						</Form>
+					</Row>
+					<Row className="account-email-row w-100 pl-4">
+						<Button className="account-btn ml-3" onClick={this.updateUserCard}>
+							Accept
+						</Button>
+						<Button className="account-btn ml-3" onClick={this.changeSwitch}>
+							Cancel
+						</Button>
+					</Row>
+				</div>
+			);
+		}
+	}
+	getCardLogo = () =>{
 		switch (this.props.type){
 			case 'visa':
 				return(
@@ -62,187 +195,20 @@ class HomeCard extends Component {
 				   		alt="MC"
 					/>
 				);
+			case 'other':
+					return(
+						<img 
+							src={other}
+							   width="60"
+							height="40"
+							className="d-inline-block align-top"
+							   alt="other"
+						/>
+					);
 			default :
 				return '';
 		}
 	}
-	//Switches des booléens pour display/pas display les champs
-	addSwitch(){
-		this.setState({
-			add_card: !this.state.add_card
-		});
-	}
- 	
-	changeSwitch(){
-		this.setState({
-			change_card: !this.state.change_card
-		});
-	}
-	//return les champs a remplir pour ajouter une carte
-	addCard(){
-		if(this.state.add_card){
-			return(
-				<div>
-					<Row className="mt-3">
-						<Form className="mt-2 w-100">
-							<Row className="">
-							<Col className="col-sm-4 ml-3">
-								<FormGroup>
-									<Input type="select" name="Card Type" id="card_type" className="ml-4">
-										<option>Visa</option>
-										<option>Master Card</option>
-										<option>American Express</option>
-										<option>Other</option>
-									</Input>
-								</FormGroup>
-							</Col>
-							<Col className="">
-								<Row className="w-100">
-									<FormGroup className ="w-100">
-										<Input 
-											type="select" 
-											name="Expiration Date" 
-											id="exp_date" 
-											className="w-75 ml-3"
-										>
-											<option>Add DatePicker</option>
-										</Input>
-									</FormGroup>
-								</Row>
-								<Row className="text-center w-100">
-									<FormGroup className="w-100">
-										<Input
-											type="text"
-											name="CardNumber"
-											id="card_number"
-											placeholder="XXXX-XXXX-XXXX-XXXX"
-											className=" w-75 ml-3"
-										/>
-									</FormGroup>
-								</Row>
-							</Col>
-							</Row>
-						</Form>
-					</Row>
-					<Row className="account-email-row w-100 pl-4">
-						<Button className="account-btn ml-3" onClick={this.addSwitch}>
-							Accept
-						</Button>
-						<Button className="account-btn ml-3" onClick={this.addSwitch}>
-							Cancel
-						</Button>
-					</Row>
-				</div>
-			);
-		}
-	}
-	//Display la carte actuel ou display les champs pour mis a jour de la carte	
-	changeCard(){
-		if(!this.state.change_card){
-			return(
-				<div>
-					<Row className="pt-3 home-card-list">
-						<Col className="col-sm-3">
-							{this.getCardLogo()}		
-						</Col>
-						<Col className="">
-							<Row className="h5">
-								Expiration Date: {this.props.exp_date}
-							</Row>
-							<Row>
-								Card num: XXXX-XXXX-XXXX-{this.props.number}
-							</Row>
-						</Col>
-						<Col className="col-sm-3">
-							<Row>
-								<Button  onClick={this.changeSwitch} className="home-btn">
-									Change
-								</Button>
-							</Row>
-							<Row>
-								<Button  className="home-btn mt-1">
-									Delete
-								</Button>
-							</Row>
-						</Col>
-					</Row>
-					<br/>
-					<Row className="pt-3">
-						<Button onClick = {this.addSwitch} className="home-btn ml-5"> 
-							Add
-						</Button>
-					</Row>
-				</div>
-			);
-		}
-		else{
-			return(
-				<div>
-					<Row className="mt-3">
-						<Form className="mt-2 w-100">
-							<Row className="">
-							<Col className="col-sm-4 ml-3">
-								<FormGroup>
-									<Input type="select" name="Card Type" id="card_type" className="ml-4">
-										<option>Visa</option>
-										<option>Master Card</option>
-										<option>American Express</option>
-										<option>Other</option>
-									</Input>
-								</FormGroup>
-							</Col>
-							<Col className="">
-								<Row className="w-100">
-									<FormGroup className ="w-100">
-										<Input 
-											type="select" 
-											name="Expiration Date" 
-											id="exp_date" 
-											className="w-75 ml-3"
-										>
-											<option>Add DatePicker</option>
-										</Input>
-									</FormGroup>
-								</Row>
-								<Row className="text-center w-100">
-									<FormGroup className="w-100">
-										<Input
-											type="text"
-											name="CardNumber"
-											id="card_number"
-											placeholder="XXXX-XXXX-XXXX-XXXX"
-											className=" w-75 ml-3"
-										/>
-									</FormGroup>
-								</Row>
-							</Col>
-							</Row>
-						</Form>
-					</Row>
-					<Row className="account-email-row w-100 pl-4">
-						<Button className="account-btn ml-3" onClick={this.changeSwitch}>
-							Accept
-						</Button>
-						<Button className="account-btn ml-3" onClick={this.changeSwitch}>
-							Cancel
-						</Button>
-					</Row>
-				</div>
-			);
-		}
-	}
-
-	//!!!!!!!!!
-
-	render(){
-		return(
-		<div>
-			{this.changeCard()}
-			{this.addCard()}
-			
-		</div>
-		);
-	}
-};
+}
 
 export default HomeCard;

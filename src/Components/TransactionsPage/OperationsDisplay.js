@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import {
-	Container, Col, Row,
+	 Col, Row,
 	Card, CardBody,
 } from 'reactstrap';
 

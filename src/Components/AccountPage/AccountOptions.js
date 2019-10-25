@@ -39,7 +39,7 @@ class AccountOptions extends Component {
 								{this.idDisp()}
 							<Row>
 								<Button className='account-btn mt-3'>
-									Close my account
+									Close my account mdr
 								</Button>
 							</Row>
 						</div>
@@ -100,7 +100,7 @@ class AccountOptions extends Component {
 					<Col className='pt-3'>	
 						{this.state.nationality}
 					</Col>
-					<Col className='pt-2 pl-5 col-sm-4'>
+					<Col className='pt-2 pl-5 col-sm-4 mb-3'>
 						<Button className='account-btn' onClick={this.nationalityMod}>
 							Change
 						</Button>
@@ -119,7 +119,7 @@ class AccountOptions extends Component {
 							<CountrySelect country = {this.state.nationality} onEvent = {this.HandleNationalityEvent}/>
 						</Form>
 					</Col>
-					<Col className='pt-2 pl-5 col-sm-4'>
+					<Col className='pt-2 pl-5 col-sm-4 mb-3'>
 						<Button className='account-btn' onClick={this.nationalityMod}>
 							Apply
 						</Button>

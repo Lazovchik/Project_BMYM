@@ -135,7 +135,7 @@ class AccountEmail extends Component {
 					</Col>
 				</Row>
 				<Row className="account-email-row">
-					<Button className="account-btn ml-3" onClick={this.emailMod}>
+					<Button className="account-btn ml-3 my-2" onClick={this.emailMod}>
 						Apply
 					</Button>
 				</Row>

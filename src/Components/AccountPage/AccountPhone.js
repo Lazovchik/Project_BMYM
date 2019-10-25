@@ -134,7 +134,7 @@ class AccountPhone extends Component {
 					</Col>
 				</Row>
 				<Row className="account-phone-row">
-					<Button className="account-btn ml-3" onClick={this.phoneMod}>
+					<Button className="account-btn ml-3 my-2" onClick={this.phoneMod}>
 						Apply
 					</Button>
 				</Row>

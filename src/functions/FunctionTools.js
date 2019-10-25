@@ -16,7 +16,7 @@ export function findMaxId(tab)
     return arrayMax(tabId);    
 }
 //code find there : https://stackoverflow.com/questions/1669190/find-the-min-max-element-of-an-array-in-javascript
-function arrayMin(arr) {
+/* function arrayMin(arr) {
     var len = arr.length, min = Infinity;
     while (len--) {
       if (arr[len] < min) {
@@ -24,7 +24,7 @@ function arrayMin(arr) {
       }
     }
     return min;
-  };
+  }; */
   
 function arrayMax(arr) {
     var len = arr.length, max = -Infinity;
@@ -102,5 +102,17 @@ export function findUserId(item)
       else
         return false; 
     }
+}
+//card code have special formats, apply this format to a number
+export function cardNumberFormat(number){
+      
+  number = number.substr(-4);
+  //if the format of the number is not correct, stop the operation
+  if(typeof(parseInt(number)) === typeof(int) || parseInt(number)/1000 < 1)
+  {
+    alert('Incorrect card number format');
+    return false;
+  }
+  return number;
 }
 

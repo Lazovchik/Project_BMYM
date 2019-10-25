@@ -1,5 +1,7 @@
 import React from 'react';
-import filterMail, {findMaxId, findIndexId, findUserId, addObject, getDbType, notFindIndexId} from './FunctionTools'
+import filterMail, {findMaxId, findIndexId, findUserId, addObject, getDbType, notFindIndexId, cardNumberFormat} from './FunctionTools'
+//datepicker source : https://reactdatepicker.com/#example-custom-input
+import DatePicker from "react-datepicker";
 
 //search the combo mail/ pw in the db and alert on the status of the connection
 export default function IsInDb(mail, pw){
@@ -39,6 +41,18 @@ export function trout(){
     </div>
     );
 }
+export function makeDatePicker(date, onChangeFunc){
+		
+  return (
+    <DatePicker
+    selected = {date}
+    onChange={onChangeFunc}
+    dateFormat="MM/yy"
+    showMonthYearPicker
+    isClearable
+    />
+  );
+};
 //show all users in local storage
 export function showUsers(){
   var users = JSON.parse(localStorage.getItem('users'));
@@ -136,21 +150,38 @@ export function createUser(fname, lname, nemail, npw, nadmin, nOrigin, nStreet, 
   return newId;
 }
 //create a new card and add it to db 
-export function createCard(nUser_id, nLast_4, nBrand, nExpired_at){
-
+export function createCard(nUser_id, number, nBrand, nExpired_at){
   //find actual max Id and increment it
   const cards = [...JSON.parse(localStorage.getItem('cards'))];
   var newId =  findMaxId(cards) ;
   newId++;
+  //change the card number
+  if(number !== '')
+  {
+    number = cardNumberFormat(number)
+    if( number === false)
+      return false;
+  }
+  else
+    return false;
+
+  //change the brand
+  if(nBrand === '')
+    return false;
+
+  //change the expiration date
+  if(nExpired_at === '')
+    return false;
   //create new user object
   var newCard = {
-      id: newId,
-      user_id : nUser_id,
-      last_4: nLast_4,
+      id: JSON.stringify(newId),
+      user_id : JSON.stringify(nUser_id),
+      last_4: number,
       brand: nBrand,
       expired_at: nExpired_at
   };
   addObject(newCard, 'card');
+  return true;
 }
 //create a new card and add it to db 
 export function createTransfer(nDebited_wallet_id, nCredited_wallet_id, nAmount){
@@ -192,7 +223,6 @@ export function deleteObject(id, type)
   var tab = [];
   //used temporary as global variable
   localStorage.setItem('searchId', id);
-
   database = getDbType(type);
   //if no database was found, return null
   if(database === '')
@@ -311,26 +341,18 @@ export function updateCard(cardId, number, nBrand, expirationDate){
     //change the card number
     if(number !== '')
     {
-      number = number.substr(-4);
-      //if the format of the number is not correct, stop the operation
-      if(typeof(parseInt(number)) === typeof(int) || parseInt(number)/1000 < 1)
-      {
-        alert('Incorrect card number format');
-        return false;
-      }
-      card.last_4 = number;
+      number = cardNumberFormat(number)
+      if( number !== false)
+        card.last_4 = number
     }
 
     //change the brand
     if(nBrand !== '')
       card.brand = nBrand;
+
     //change the expiration date
     if(expirationDate !== '')
-    {
-      const year = JSON.stringify(expirationDate.getFullYear()).substr(-2);
-      const month = expirationDate.getMonth() > 8 ?  expirationDate.getMonth()+1 : '0' + (expirationDate.getMonth()+1);
-      card.expired_at = month + '/' + year;
-    }
+      card.expired_at = expirationDate;
 
     deleteObject(cardId, 'card');
     addObject(card, 'card');
@@ -384,4 +406,10 @@ export function updateUser( first_name, last_name,
   }
   
 }
+//format for a credit card date
+export function formatDate(date){
+  const year = JSON.stringify(date.getFullYear()).substr(-2);
+  const month = date.getMonth() > 8 ?  date.getMonth()+1 : '0' + (date.getMonth()+1);
+  return month + "/" + year;
+ }
 
