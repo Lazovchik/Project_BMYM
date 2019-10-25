@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import {
-	Col, Button, Row,
+	Form, FormGroup, Input,	Col, Button, Row,
 } from 'reactstrap';
 
 import './HomePage.css';
@@ -16,7 +16,14 @@ class HomeCard extends Component {
 
 	constructor(props){
 		super(props);
+		//variable bidon pour l'affichage des champs
+		this.state={
+			add_card: false
+		};
+
 		this.getCardLogo = this.getCardLogo.bind(this);
+		this.addCard = this.addCard.bind(this);
+		this.addSwitch = this.addSwitch.bind(this);
 	}
 	
 	getCardLogo(){
@@ -53,6 +60,79 @@ class HomeCard extends Component {
 				);
 		}
 	}
+	
+	//!!!!!!!!!
+	//New Stuff to add Card (Fields)
+
+	//Variable bidon pour display/pas display les champs
+	addSwitch(){
+		this.setState({
+			add_card: !this.state.add_card
+		});
+	}
+
+	//return les champs a remplir pour ajouter une carte
+
+	addCard(){
+		if(this.state.add_card){
+			return(
+				<div>
+					<Row className="mt-3">
+						<Form className="mt-2 w-100">
+							<Row className="">
+							<Col className="col-sm-4 ml-3">
+								<FormGroup>
+									<Input type="select" name="Card Type" id="card_type" className="ml-4">
+										<option>Visa</option>
+										<option>Master Card</option>
+										<option>American Express</option>
+										<option>Other</option>
+									</Input>
+								</FormGroup>
+							</Col>
+							<Col className="">
+								<Row className="w-100">
+									<FormGroup className ="w-100">
+										<Input 
+											type="select" 
+											name="Expiration Date" 
+											id="exp_date" 
+											className="w-75 ml-3"
+										>
+											<option>Add DatePicker</option>
+										</Input>
+									</FormGroup>
+								</Row>
+								<Row className="text-center w-100">
+									<FormGroup className="w-100">
+										<Input
+											type="text"
+											name="CardNumber"
+											id="card_number"
+											placeholder="XXXX-XXXX-XXXX-XXXX"
+											className=" w-75 ml-3"
+										/>
+									</FormGroup>
+								</Row>
+							</Col>
+							</Row>
+						</Form>
+					</Row>
+					<Row className="account-email-row w-100 pl-4">
+						<Button className="account-btn ml-3" onClick={this.addSwitch}>
+							Accept
+						</Button>
+						<Button className="account-btn ml-3" onClick={this.addSwitch}>
+							Cancel
+						</Button>
+					</Row>
+				</div>
+			);
+		}
+	}
+
+	
+	//!!!!!!!!!
 
 	render(){
 		return(
@@ -76,10 +156,17 @@ class HomeCard extends Component {
 				</Col>
 			</Row>
 			<Row className="pt-3">
-				<Button onClick = {this.handleAddCard} className="home-btn ml-5">
+				<Button onClick = {this.addSwitch} className="home-btn ml-5"> 
+				{
+					//mtn le button
+					//add juste switch le variable, tu ajoutera ta fonction a toi 
+				}
 					Add
 				</Button>
 			</Row>
+			
+			{this.addCard()}
+			
 		</div>
 		);
 	}
