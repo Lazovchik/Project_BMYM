@@ -14,7 +14,7 @@ import NavigBar from './Components/NavigBar/NavigBar';
 import HomePage from './Components/HomePage/HomePage';
 import AccountPage from './Components/AccountPage/AccountPage';
 import TransactionsPage from './Components/TransactionsPage/TransactionsPage';
-import TransferPage from './TransferPage/TransferPage';
+import TransferPage from './Components/TransferPage/TransferPage';
 
 //CSS
 import './App.css';
