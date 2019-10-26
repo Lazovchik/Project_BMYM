@@ -110,9 +110,16 @@ class HomeCard extends Component {
 					<Row className="mt-3">
 						<Form className="mt-2 w-100">
 							<Row className="">
-								<Col className="col-sm-4 ml-3">
+								<Col className="col-sm-3 ml-3">
 									<FormGroup>
-										<Input value ={this.state.type} onChange={this.handleType} type="select" name="Card Type" id="card_type" className="ml-4">
+										<Input 
+											value ={this.state.type} 
+											onChange={this.handleType} 
+											type="select" 
+											name="Card Type" 
+											id="card_type" 
+											className="ml-4"
+										>
 											<option value='visa'>Visa</option>
 											<option value='mastercard'>Master Card</option>
 											<option value='amex'>American Express</option>
@@ -120,23 +127,15 @@ class HomeCard extends Component {
 										</Input>
 									</FormGroup>
 								</Col>
-								<Col className="">
-									<Row className="col-sm-4">
-										{makeDatePicker(this.state.startDate, this.handleDatePicker)}
-									</Row>
-									<Row className="col-sm-4">
-										<br/>
-									</Row>
-									<Row className="col-sm-4">
-									<br/>
-									</Row>
+								<Col className="d-flex justify-content-left pt-1 pl-4">
+									{makeDatePicker(this.state.startDate, this.handleDatePicker)}
 								</Col>
 							</Row>
 							<Row className="text-center w-100">
-								<Col className="col-sm-4 ml-2">
+								<Col className="col-sm-3">
 								</Col>
-								<Col className="col-sm-6 ml-3">
-										<FormGroup className="w-100">
+								<Col className="ml-3">
+										<FormGroup className="w-75">
 											<Input
 												type="text"
 												name="CardNumber"
@@ -152,10 +151,10 @@ class HomeCard extends Component {
 						</Form>
 					</Row>
 					<Row className="account-email-row w-100 pl-4">
-						<Button className="account-btn ml-3" onClick={this.updateUserCard}>
+						<Button className="account-btn ml-3 mr-2" onClick={this.updateUserCard}>
 							Accept
 						</Button>
-						<Button className="account-btn ml-3" onClick={this.changeSwitch}>
+						<Button className="account-btn ml-4" onClick={this.changeSwitch}>
 							Cancel
 						</Button>
 					</Row>

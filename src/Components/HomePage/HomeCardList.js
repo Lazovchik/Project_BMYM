@@ -76,9 +76,10 @@ class HomeCradList extends Component {
 				cardsTab.sort(function(a, b){return parseInt(a.id) - parseInt(b.id)});
 			}
 				
-			cardDisplayed = <div className = "cards"> {cardDisplayed} 
-								<Row className="pt-3">
-									<Button onClick = {this.addSwitch} className="home-btn mb-3 ml-5"> 
+			cardDisplayed = <div className = "cards bg-warning"> 
+								{cardDisplayed} 
+								<Row className="pt-3 pl-3">
+									<Button onClick = {this.addSwitch} className="home-btn mb-3 ml-4"> 
 										{this.state.button}
 									</Button>
 								</Row>
@@ -107,8 +108,14 @@ class HomeCradList extends Component {
 										<Col className="col-sm-1 ml-3"></Col>
 										<Col className=" ml-3">
 											<FormGroup>
-												<Input value ={this.state.nType} onChange={this.handleNewType} 
-													type="select" name="Card Type" id="card_type" className="custom-select sm">
+												<Input 
+													value ={this.state.nType} 
+													onChange={this.handleNewType} 
+													type="select" 
+													name="Card Type" 
+													id="card_type" 
+													className="custom-select sm"
+												>
 													<option value='visa'>Visa</option>
 													<option value='mastercard'>Master Card</option>
 													<option value='amex'>American Express</option>
