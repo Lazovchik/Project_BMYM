@@ -60,32 +60,35 @@ class App extends Component {
   
   switchDisplayedComp(){
 
-    switch(this.state.displayedComp)
+    if(localStorage.getItem('user') !== null)
     {
-      case 'LogIn' : 
-          return (<LogIn onButtonClick = {this.changeDisplayedComp}/>) ;
-      case 'SignIn' :
-          return (<SignIn onButtonClick = {this.changeDisplayedComp}/>) ;
-      case 'Home' :
-          if(localStorage.getItem('user') !== null)
-            return (<HomePage onButtonClick = {this.changeDisplayedComp}/>) ;
-          else
+      switch(this.state.displayedComp)
+      {
+        case 'Home' :
+              return (<HomePage onButtonClick = {this.changeDisplayedComp}/>) ;
+        case 'Account' :
+              return (<AccountPage onButtonClick = {this.changeDisplayedComp}/>) ;
+        case 'Transactions' :
+            return (<TransactionsPage/>) ;
+        case 'Transfer' :
+            return (<TransferPage/>) ;
+        case 'AddCard' :
+            return ('') ;
+        default :
             return '';
-      case 'Account' :
-          if(localStorage.getItem('user') !== null)
-            return  (<AccountPage onButtonClick = {this.changeDisplayedComp}/>) ;
-          else
-            return '';
-          
-      case 'Transactions' :
-          return (<TransactionsPage/>) ;
-      case 'Transfer' :
-          return (<TransferPage/>) ;
-      case 'AddCard' :
-          return ('') ;
-      default :
-          return '';
+      }
     }
+    else
+      switch(this.state.displayedComp)
+        {
+          case 'LogIn' : 
+              return (<LogIn onButtonClick = {this.changeDisplayedComp}/>) ;
+          case 'SignIn' :
+              return (<SignIn onButtonClick = {this.changeDisplayedComp}/>) ;
+          default :
+              return '';
+        }
+    
   }
   
 }

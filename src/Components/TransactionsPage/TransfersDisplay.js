@@ -12,49 +12,20 @@ import './TransactionsPage.css';
 
 class TransfersDisplay extends Component {
 
-	constructor(props){
-		super(props);
-		
-		this.state={
-			creditor: "Superman",
-			debitor: "Batman",
-			amount: 20
-		}
-	}
 
 	render(){
 		return(
 			<div>
-				<Row className="h1 text-left pl-4">
-					Transfer History
-				</Row>
-				<Row>
-					<Card className="rounded default-transactions-card mt-1 ml-4 w-100">	
-						<CardBody>
-							<Row className="h3 transfers-list">
-								<Col>
-									Debited
-								</Col>
-								<Col>
-									Credited
-								</Col>
-								<Col>
-									Amount
-								</Col>
-							</Row>
-							<Row className="transfers-list">
-								<Col>
-									{this.state.debitor}
-								</Col>
-								<Col>
-									{this.state.creditor}
-								</Col>
-								<Col>
-									{this.state.amount}
-								</Col>
-							</Row>
-						</CardBody>
-					</Card>
+				<Row className="transfers-list py-2">
+					<Col>
+						{this.props.debUser}
+					</Col>
+					<Col>
+						{this.props.credUser}
+					</Col>
+					<Col>
+						{this.props.amount}
+					</Col>
 				</Row>
 			</div>
 		);
