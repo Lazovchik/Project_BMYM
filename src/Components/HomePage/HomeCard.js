@@ -76,15 +76,15 @@ class HomeCard extends Component {
 		if(!this.state.change_card){
 			return(
 				<div>
-					<Row className="pt-3 home-card-list">
-						<Col className="col-sm-3">
+					<Row className="pt-3 w-100 home-card-list ml-1 pr-5">
+						<Col className="col-sm-2 ">
 							{this.getCardLogo()}		
 						</Col>
 						<Col className="">
-							<Row className="h5">
+							<Row className="h5 ml-1">
 								Expiration Date: {this.props.exp_date}
 							</Row>
-							<Row>
+							<Row className="ml-1">
 								Card num: XXXX-XXXX-XXXX-{this.props.number}
 							</Row>
 						</Col>
@@ -150,7 +150,7 @@ class HomeCard extends Component {
 							</Row>
 						</Form>
 					</Row>
-					<Row className="account-email-row w-100 pl-4">
+					<Row className="home-card-list w-100 pl-1 ml-1">
 						<Button className="account-btn ml-3 mr-2" onClick={this.updateUserCard}>
 							Accept
 						</Button>

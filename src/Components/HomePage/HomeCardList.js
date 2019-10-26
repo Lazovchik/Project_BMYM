@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import {
-	Form, FormGroup, Input,	Col, Button, Row, Card
+	Form, FormGroup, Input, Label,
+	Col, Button, Row, Card
 } from 'reactstrap';
 import { getTabByUserId, formatDate, createCard, makeDatePicker } from '../../functions/ComponentTools';
 import './HomePage.css';
@@ -76,7 +77,7 @@ class HomeCradList extends Component {
 				cardsTab.sort(function(a, b){return parseInt(a.id) - parseInt(b.id)});
 			}
 				
-			cardDisplayed = <div className = "cards bg-warning"> 
+			cardDisplayed = <div className = "cards"> 
 								{cardDisplayed} 
 								<Row className="pt-3 pl-3">
 									<Button onClick = {this.addSwitch} className="home-btn mb-3 ml-4"> 
@@ -95,18 +96,15 @@ class HomeCradList extends Component {
 					<Row className="mt-3">
 						<Form className="mt-2 w-100">
 							<Row className="">
-								<Col className="col-5 ml-3">
-									<h5 className ="text-center ml-5">Type</h5>
+								<Col className="col-sm-3 ml-3 text-left">
+									<h5 className ="ml-4">Type</h5>
 								</Col>
-								<Col className="col-6 mr-4">
-									<h5 class="text-left ml-3">Expiration date</h5>
+								<Col className="pl-4">
+									<h5 class="text-left">Expiration date</h5>
 								</Col>
 							</Row>
 							<Row className="">
-								<Col className="col-sm-5 ml-3">
-									<Row className="">
-										<Col className="col-sm-1 ml-3"></Col>
-										<Col className=" ml-3">
+								<Col className="col-sm-3 ml-3">
 											<FormGroup>
 												<Input 
 													value ={this.state.nType} 
@@ -114,7 +112,7 @@ class HomeCradList extends Component {
 													type="select" 
 													name="Card Type" 
 													id="card_type" 
-													className="custom-select sm"
+													className="ml-4"
 												>
 													<option value='visa'>Visa</option>
 													<option value='mastercard'>Master Card</option>
@@ -122,34 +120,29 @@ class HomeCradList extends Component {
 													<option value='other'>Other</option>
 												</Input>
 											</FormGroup>
-											</Col>
-									</Row>
 								</Col>
-								<Col className="">
-									<Row className="col-sm-6 mt-1">
-										{makeDatePicker(this.state.nStartDate, this.handleNewDatePicker)}
-									</Row>
-									<Row className="col-sm-4">
-										<br/>
-									</Row>
-									<Row className="col-sm-4">
-									<br/>
-									</Row>
+								<Col className="d-flex justify-content-left pt-1 pl-4">
+									{makeDatePicker(this.state.nStartDate, this.handleNewDatePicker)}
 								</Col>
 							</Row>
 							<Row className="text-center w-100">
-								
-								<Col className="col-sm-4 ml-5 my-2">
-								<h5 class="text-right text-nowrap ml-5">Card number :</h5>
+								<Col className="col-sm-3">	
 								</Col>
-								<Col className="col-sm-6 ">
-										<FormGroup className="w-100">
+								<Col className="ml-3">
+									<h5 className="text-left ml-3">Card Number</h5>
+								</Col>
+							</Row>
+							<Row className="text-center w-100">
+								<Col className="col-sm-3">	
+								</Col>
+								<Col className="ml-3">
+										<FormGroup className="w-75">
 											<Input
 												type="text"
 												name="CardNumber"
 												id="card_number"
 												placeholder="XXXX-XXXX-XXXX-XXXX"
-												className=" w-75 mr-3"
+												className=" w-75 ml-3"
 												value={this.nNumber}
 												onChange={this.handleNewNumber}
 											/>
@@ -158,11 +151,11 @@ class HomeCradList extends Component {
 							</Row>
 						</Form>
 					</Row>
-					<Row className="account-email-row w-100 pl-4">
-						<Button className="account-btn ml-3 my-3" onClick={this.newCardCreation}>
+					<Row className="home-card-list w-100 pl-1 ml-1">
+						<Button className="account-btn ml-3 mr-2" onClick={this.newCardCreation}>
 							Accept
 						</Button>
-						<Button className="account-btn ml-3 my-3" onClick={this.addSwitch}>
+						<Button className="account-btn ml-4" onClick={this.addSwitch}>
 							Cancel
 						</Button>
 					</Row>
