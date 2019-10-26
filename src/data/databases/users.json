@@ -37,7 +37,18 @@
       "street": "13 rue du loup de mer",
       "city": "92400 Courbevoie",
       "phone": "0705090405"
-
-
+    },
+    {
+      "id": "3",
+      "first_name": "Marie-Jane",
+      "last_name": "Watson",
+      "email": "mj@usa.com",
+      "password": "123",
+      "is_admin": "false",
+      "balance" : "175000",
+      "origin": "United States",
+      "street": "21 3rd street",
+      "city": "New York",
+      "phone": "3054531600"
     }
   ]

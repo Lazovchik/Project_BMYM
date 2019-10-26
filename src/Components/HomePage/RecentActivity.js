@@ -94,7 +94,7 @@ class RecentActivity extends Component {
 		const credUser = getObjetById(parseInt(lastTransfer.credited_wallet_id), 'user');
 		const debName = debUser.first_name + ' ' +debUser.last_name;
 		const credName = credUser.first_name + ' ' +credUser.last_name;
-		const transferAmount = parseFloat(lastTransfer.amount / 100)
+		const transferAmount = parseFloat(lastTransfer.amount / 100);
 		this.setState({
 			debWall: debName,
 			credWall: credName,
