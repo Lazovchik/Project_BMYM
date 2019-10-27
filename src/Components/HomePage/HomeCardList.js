@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import {
-	Form, FormGroup, Input, Label,
+	Form, FormGroup, Input,
 	Col, Button, Row, Card
 } from 'reactstrap';
 import { getTabByUserId, formatDate, createCard, makeDatePicker } from '../../functions/ComponentTools';

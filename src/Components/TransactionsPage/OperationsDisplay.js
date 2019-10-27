@@ -4,18 +4,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import {
 	 Col, Row,
-	Card, CardBody,
 } from 'reactstrap';
 
 import './TransactionsPage.css';
 
 
 class OperationsDisplay extends Component {
-
-	constructor(props){
-		super(props);
-		
-	}
 
 	//pour savoir si l'operation est payin ou payout, et la display correctement
 

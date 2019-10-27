@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import {
-	 Col, Row,
-	Card, CardBody,
+	 Col, Row
 } from 'reactstrap';
 
 import './TransactionsPage.css';

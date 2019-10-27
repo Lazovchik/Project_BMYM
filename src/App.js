@@ -18,9 +18,10 @@ import TransferPage from './Components/TransferPage/TransferPage';
 
 //CSS
 import './App.css';
+import "react-datepicker/dist/react-datepicker.css";
+
 //fonctions
 //import {showCards} from './functions/ComponentTools';
-import "react-datepicker/dist/react-datepicker.css";
 class App extends Component {
 	
 	constructor(props)
@@ -33,7 +34,7 @@ class App extends Component {
       localStorage.setItem('payouts', JSON.stringify(payouts));
       localStorage.setItem('transfers', JSON.stringify(transfers));
       this.state = {
-          displayedComp : 'Home',
+          displayedComp : 'Transfer',
           startDate: new Date()
       };
       
@@ -48,6 +49,7 @@ class App extends Component {
           <div>
             {this.switchDisplayedComp()}
           </div>
+          
        </div>
 		);
   }

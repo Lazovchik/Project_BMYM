@@ -15,7 +15,7 @@ class LogInButtons extends Component {
 
 	render() {
 		return (
-			<Collapse isOpen='true' className="text-center mr-5" navbar>
+			<Collapse  className="text-center mr-5" navbar>
 				<Nav navbar>
 					<NavItem>
 						<Button onClick = {this.handleSignIn} className="btn-nav mx-3">
