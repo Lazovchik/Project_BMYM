@@ -15,6 +15,8 @@ import HomePage from './Components/HomePage/HomePage';
 import AccountPage from './Components/AccountPage/AccountPage';
 import TransactionsPage from './Components/TransactionsPage/TransactionsPage';
 import TransferPage from './Components/TransferPage/TransferPage';
+import PayInPage from './Components/PayInPage/PayInPage';
+import PayOutPage from './Components/PayOutPage/PayOutPage';
 
 //CSS
 import './App.css';
@@ -47,9 +49,15 @@ class App extends Component {
               <NavigBar onButtonClick = {this.changeDisplayedComp}/>
           </div>
           <div>
-            {this.switchDisplayedComp()}
+		      {this.switchDisplayedComp()}
           </div>
-          
+		  <div>
+		      <PayInPage/>
+		  </div>
+          <div>
+		      <PayOutPage/>
+		  </div>
+         
        </div>
 		);
   }
@@ -74,9 +82,13 @@ class App extends Component {
             return (<TransactionsPage/>) ;
         case 'Transfer' :
             return (<TransferPage/>) ;
-        case 'AddCard' :
+        case 'addcard' :
             return ('') ;
-        default :
+		case 'PayIn' :
+            return ('') ;
+		case 'PayOut' :
+            return ('') ;
+		default :
             return '';
       }
     }
