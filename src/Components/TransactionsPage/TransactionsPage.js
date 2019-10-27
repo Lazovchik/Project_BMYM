@@ -88,10 +88,15 @@ class TransactionsPage extends Component {
 		var operationsDisplayed;
 		//get the user id
 		const user_id = parseInt(localStorage.getItem('user'));
-		operationsDisplayed = this.getOperationsInfos(user_id, 'payin');
-		operationsDisplayed = operationsDisplayed + this.getOperationsInfos(user_id,'payout')
-		if( typeof(operationsDisplayed) !== typeof(String) )
+		const payins = this.getOperationsInfos(user_id, 'payin');
+		const payouts = this.getOperationsInfos(user_id, 'payout');
+		if( payins === false &&  payouts === false )
 			operationsDisplayed = 'none';
+		else
+			operationsDisplayed =<div> 
+									<div> {payins} </div>
+								    <div> {payouts}</div>
+								</div>;
 		operationsDisplayed = <div className = "operations"> 
 								<Row>
 									<Card className="rounded default-transactions-card mt-1 ml-4 w-100">	
@@ -104,7 +109,7 @@ class TransactionsPage extends Component {
 													Amount
 												</Col>
 											</Row>
-												{operationsDisplayed}
+											{operationsDisplayed}
 										</CardBody>
 									</Card>
 								</Row>
@@ -115,23 +120,25 @@ class TransactionsPage extends Component {
 	getOperationsInfos(user_id, type){
 		//get all the operations of type specified
 		var operationsTab = getTabByUserId(user_id, type);
-		var operationsDisplayed;
+		var operationsDisplayed = '';
 		if(type === 'payin')
 			type = 'Pay In';
 		else
 			type = 'Pay Out';
-
+		
 		if(operationsTab !== null)
 		{
 			operationsDisplayed = operationsTab.map( operation =>
 				{
 					return <OperationsDisplay 
-					key = {operation.id}
-					type = {type}
-					amount = {operation.amount} />
+							key = {operation.id}
+							type = {type}
+							amount = {parseFloat(operation.amount) /100} />
 				});
-			return operationsDisplayed;
+			return operationsDisplayed ;
 		}
+		else 
+			return false;
 		
 	}
 };

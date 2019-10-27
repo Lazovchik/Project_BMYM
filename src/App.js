@@ -15,7 +15,7 @@ import HomePage from './Components/HomePage/HomePage';
 import AccountPage from './Components/AccountPage/AccountPage';
 import TransactionsPage from './Components/TransactionsPage/TransactionsPage';
 import TransferPage from './Components/TransferPage/TransferPage';
-import OperationPage from './Components/PayInPage/OperationPage';
+import OperationPage from './Components/Operation/OperationPage';
 
 //CSS
 import './App.css';
@@ -35,7 +35,7 @@ class App extends Component {
       localStorage.setItem('payouts', JSON.stringify(payouts));
       localStorage.setItem('transfers', JSON.stringify(transfers));
       this.state = {
-          displayedComp : 'PayIn',
+          displayedComp : 'Home',
           startDate: new Date()
       };
       

@@ -12,10 +12,7 @@ class CountrySelect extends Component {
             value: this.props.country
           };
     }
-    componentDidMount()
-    {
-        console.log(this.props.country)
-    }
+    
     render() {
         return(
             <FormGroup>

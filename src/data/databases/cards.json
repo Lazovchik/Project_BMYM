@@ -12,6 +12,20 @@
       "last_4" : "7913",
       "brand" : "other",
       "expired_at" : "12/21"
+    },
+    {
+      "id": "2",
+      "user_id" : "2",
+      "last_4" : "1248",
+      "brand" : "amex",
+      "expired_at" : "06/23"
+    },
+    {
+      "id": "3",
+      "user_id" : "3",
+      "last_4" : "7913",
+      "brand" : "mastercard",
+      "expired_at" : "11/19"
     }
     
   ]

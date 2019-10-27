@@ -10,7 +10,7 @@ import {
 } from 'reactstrap';
 
 import './Operation.css';
-import { getTabByUserId, getObjetById } from '../../functions/ComponentTools';
+import { getTabByUserId, getObjetById, doPayInOut } from '../../functions/ComponentTools';
 
 
 class OperationRequest extends Component {
@@ -22,6 +22,19 @@ class OperationRequest extends Component {
 		};
 	}
 	render(){
+		if(this.findUserCards() === null)
+			return (
+				<div>
+				<Row className="text-left">
+					<Card className="default-pay-card w-100 ml-4 mr-4 mt-3">
+						<CardTitle className="h1 pl-4 text-center">
+							Please add some cards first
+						</CardTitle>
+					</Card>
+				</Row>
+			</div>
+			)
+
 		var type = '';
 		var sentence = '';
 		if(this.props.type === 'payin')
@@ -48,7 +61,7 @@ class OperationRequest extends Component {
 									<Row>
 										<FormGroup className="ml-5">
 											<Label for="deb_card">{sentence}</Label>
-											<select class="form-control" id="exampleFormControlSelect1">
+											<select className="form-control" id="exampleFormControlSelect1">
 												{this.displayUserCards()}
 										    </select>
 										</FormGroup>
@@ -96,7 +109,6 @@ class OperationRequest extends Component {
 	}
 	handleAccept = () =>{
 		
-
 		if(this.state.amount < 1 )
 			alert("You can't transfer less than 1€");
 		else
@@ -110,10 +122,12 @@ class OperationRequest extends Component {
 					alert("There is not enough money in you wallet to perform the transaction." );
 					return false;
 				}
-				
-
-
+				doPayInOut(this.state.amount, 'payout');
 			}
+			else
+				doPayInOut(this.state.amount, 'payin');
+
+			alert("Operation "+this.props.type+" complete." );
 			this.props.onButtonClick('Home');
 		
 		}
@@ -129,6 +143,7 @@ class OperationRequest extends Component {
 	//return all the cards within options tag for a select
 	displayUserCards = () =>{
 		var brand = '';
+		var key = 0;
 		var display = this.findUserCards().map( card =>{
 			switch(card.brand){
 				case 'visa':
@@ -143,10 +158,11 @@ class OperationRequest extends Component {
 				case 'amex':
 					brand = 'American E';
 					break;
+				default: 
+					break;
 			}
-			return <option className='option'>{brand}, num: ..{card.last_4} Date: {card.expired_at}  </option>
+			return <option key = {key++} className='option'>{brand}, num: ..{card.last_4} Date: {card.expired_at}  </option>
 		});
-		console.log(display);
 		return display;
 	}
 

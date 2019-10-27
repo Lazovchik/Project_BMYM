@@ -75,7 +75,6 @@ class LogIn extends Component {
       if( indexUser !== false)
       {
 		localStorage.setItem('user', indexUser );
-		console.log('user '+ localStorage.getItem('user') + ' connected');
 		this.props.onButtonClick('Home');
 	  }
 	  else

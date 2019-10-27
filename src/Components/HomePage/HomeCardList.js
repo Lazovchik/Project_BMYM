@@ -63,6 +63,7 @@ class HomeCradList extends Component {
 		//sort the array by id to always display in the same order values
 			if(cardsTab !== null)
 			{
+				cardsTab.sort(function(a, b){return parseInt(a.id) - parseInt(b.id)});
 				cardDisplayed = cardsTab.map( card =>
 					{
 						return <HomeCard 
@@ -74,7 +75,6 @@ class HomeCradList extends Component {
 						onButtonClick = {this.props.onButtonClick}
 						reRender = {this.reRenderer} />
 					});
-				cardsTab.sort(function(a, b){return parseInt(a.id) - parseInt(b.id)});
 			}
 				
 			cardDisplayed = <div className = "cards"> 
@@ -188,7 +188,6 @@ class HomeCradList extends Component {
 			
 		createCard(user_id, this.state.nNumber, this.state.nType, date);
 		this.addSwitch();
-		//this.props.reRender();		
 	}
 	reRenderer = () => {
 		this.setState({

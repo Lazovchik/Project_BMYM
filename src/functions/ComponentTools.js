@@ -16,10 +16,11 @@ export default function IsInDb(mail, pw){
   const users = JSON.parse(localStorage.getItem('users'));
   //find the adress of the user in the db
   var indexOfuser = users.findIndex(filterMail);
-  indexOfuser = users[indexOfuser].id;
+  
   //detect if it exists
   if (indexOfuser !== -1)
   {
+    indexOfuser = users[indexOfuser].id;
     if (users[indexOfuser].password === pw)
       {
         alert('Bienvenue !');
@@ -218,9 +219,9 @@ export function createPayinOut(nUser_id, nAmount, type){
   newId++;
   //create new user object
   var newPay = {
-      id: newId,
-      user_id : nUser_id,
-      amount: nAmount
+      id: String(newId),
+      user_id : String(nUser_id),
+      amount: String(nAmount)
   };
   addObject(newPay, type);
 }
@@ -263,7 +264,6 @@ export function getObjetById(id, type){
     index = tab.findIndex(findIndexId);
     if(index === -1)
     {
-      console.log('didn t find the '+ type +' id');
       return null;
     }
     object =  tab[index];
@@ -292,7 +292,6 @@ export function getTabByUserId(userId, type){
     tabFiltered = tab.filter(findUserId);
     if(tabFiltered.length === 0)
     {
-      console.log('didn t find any '+ type +' for user id:' + userId);
       return null;
     }
   
@@ -309,8 +308,6 @@ export function getLastTransfer(userId){
   //find the highest id (so the most recent) and return the transfer asociated
   if(transferTab !== null)
   {
-    console.log(transferTab);
-
     return getObjetById(parseInt(findMaxId(transferTab)), 'transfer');
   }
   else 
@@ -327,6 +324,7 @@ export function doPayInOut(amount, type){
     return false;
   }
   else{
+    amount*=100;
     if(type === 'payout')
       amount = -amount;
     
@@ -339,7 +337,6 @@ export function updateUserBalance(amount, userId){
   var user = getObjetById(userId, 'user');
   const balance = parseInt(user.balance)+ parseInt(amount);
     user.balance = JSON.stringify(balance);
-    console.log(balance)
     deleteObject(userId, 'user');
     addObject(user, 'user');
     return true;
