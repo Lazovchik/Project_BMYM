@@ -1,4 +1,10 @@
 import React from 'react';
+//pictures of cards
+import visa from '../data/img/VISA.png';
+import master_card from '../data/img/MC.png';
+import amex from '../data/img/AMEX.png';
+import other from '../data/img/OTHER.png';
+
 import filterMail, {findMaxId, findIndexId, findUserId, addObject, getDbType, notFindIndexId, cardNumberFormat} from './FunctionTools'
 //datepicker source : https://reactdatepicker.com/#example-custom-input
 import DatePicker from "react-datepicker";
@@ -424,4 +430,51 @@ export function formatDate(date){
   const month = date.getMonth() > 8 ?  date.getMonth()+1 : '0' + (date.getMonth()+1);
   return month + "/" + year;
  }
+ //get which type of card to diplay
+ export function getCardLogo(type){
+  switch (type){
+    case 'visa':
+      return(
+        <img 
+          src={visa}
+               width="60"
+          height="40"
+          className="d-inline-block align-top"
+             alt="VISA"
+        />
+      );
+    case 'amex':
+      return(
+        <img 
+          src={amex}
+               width="60"
+          height="40"
+          className="d-inline-block align-top"
+             alt="AMEX"
+        />
+      );
+    case 'mastercard':
+      return(
+        <img 
+          src={master_card}
+               width="60"
+          height="40"
+          className="d-inline-block align-top"
+             alt="MC"
+        />
+      );
+    case 'other':
+        return(
+          <img 
+            src={other}
+               width="60"
+            height="40"
+            className="d-inline-block align-top"
+               alt="other"
+          />
+        );
+    default :
+      return '';
+  }
+}
 

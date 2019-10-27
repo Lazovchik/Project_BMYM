@@ -15,8 +15,7 @@ import HomePage from './Components/HomePage/HomePage';
 import AccountPage from './Components/AccountPage/AccountPage';
 import TransactionsPage from './Components/TransactionsPage/TransactionsPage';
 import TransferPage from './Components/TransferPage/TransferPage';
-import PayInPage from './Components/PayInPage/PayInPage';
-import PayOutPage from './Components/PayOutPage/PayOutPage';
+import OperationPage from './Components/PayInPage/OperationPage';
 
 //CSS
 import './App.css';
@@ -36,7 +35,7 @@ class App extends Component {
       localStorage.setItem('payouts', JSON.stringify(payouts));
       localStorage.setItem('transfers', JSON.stringify(transfers));
       this.state = {
-          displayedComp : 'Transfer',
+          displayedComp : 'PayIn',
           startDate: new Date()
       };
       
@@ -51,12 +50,6 @@ class App extends Component {
           <div>
 		      {this.switchDisplayedComp()}
           </div>
-		  <div>
-		      <PayInPage/>
-		  </div>
-          <div>
-		      <PayOutPage/>
-		  </div>
          
        </div>
 		);
@@ -81,13 +74,11 @@ class App extends Component {
         case 'Transactions' :
             return (<TransactionsPage/>) ;
         case 'Transfer' :
-            return (<TransferPage/>) ;
-        case 'addcard' :
-            return ('') ;
-		case 'PayIn' :
-            return ('') ;
-		case 'PayOut' :
-            return ('') ;
+            return (<TransferPage onButtonClick = {this.changeDisplayedComp}/>) ;
+        case 'PayIn' :
+                return (<OperationPage onButtonClick = {this.changeDisplayedComp} type = 'payin'/>) ;
+        case 'PayOut' :
+                return (<OperationPage onButtonClick = {this.changeDisplayedComp} type = 'payout'/>) ;
 		default :
             return '';
       }

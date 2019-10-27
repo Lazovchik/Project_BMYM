@@ -7,13 +7,7 @@ import {
 } from 'reactstrap';
 
 import './HomePage.css';
-import { updateCard, makeDatePicker, formatDate, deleteObject } from '../../functions/ComponentTools';
-
-import visa from '../../data/img/VISA.png';
-import master_card from '../../data/img/MC.png';
-import amex from '../../data/img/AMEX.png';
-import other from '../../data/img/OTHER.png';
-
+import { updateCard, makeDatePicker, formatDate, deleteObject,getCardLogo } from '../../functions/ComponentTools';
 
 class HomeCard extends Component {
 
@@ -78,7 +72,7 @@ class HomeCard extends Component {
 				<div>
 					<Row className="pt-3 w-100 home-card-list ml-1 pr-5">
 						<Col className="col-sm-2 ">
-							{this.getCardLogo()}		
+							{getCardLogo(this.props.type)}		
 						</Col>
 						<Col className="">
 							<Row className="h5 ml-1">
@@ -162,52 +156,7 @@ class HomeCard extends Component {
 			);
 		}
 	}
-	getCardLogo = () =>{
-		switch (this.props.type){
-			case 'visa':
-				return(
-					<img 
-						src={visa}
-       					width="60"
-						height="40"
-						className="d-inline-block align-top"
-				   		alt="VISA"
-					/>
-				);
-			case 'amex':
-				return(
-					<img 
-						src={amex}
-       					width="60"
-						height="40"
-						className="d-inline-block align-top"
-				   		alt="AMEX"
-					/>
-				);
-			case 'mastercard':
-				return(
-					<img 
-						src={master_card}
-       					width="60"
-						height="40"
-						className="d-inline-block align-top"
-				   		alt="MC"
-					/>
-				);
-			case 'other':
-					return(
-						<img 
-							src={other}
-							   width="60"
-							height="40"
-							className="d-inline-block align-top"
-							   alt="other"
-						/>
-					);
-			default :
-				return '';
-		}
-	}
+	
 }
 
 export default HomeCard;

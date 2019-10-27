@@ -102,9 +102,10 @@ class TransferRequest extends Component {
 					{
 						createTransfer(user_id, idCred, JSON.stringify(this.state.amount*100));
 						alert("Transaction completed");
+						this.props.onButtonClick('Home');
 					}
 					else
-						alert("there is not enough money in you wallet to perform the transaction." );
+						alert("There is not enough money in you wallet to perform the transaction." );
 
 					
 				}
