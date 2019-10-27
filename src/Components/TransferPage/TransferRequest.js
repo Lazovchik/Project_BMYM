@@ -20,7 +20,8 @@ class TransferRequest extends Component {
 		this.state = {
 			userOk : false,
 			selectedUser : '',
-			amount: 0 
+			amount: 0 ,
+			max : getObjetById(parseInt(localStorage.getItem('user')), 'user').balance/100
 		};
 	}
 	render(){
@@ -42,6 +43,8 @@ class TransferRequest extends Component {
 												name="Amount"
 												id="amount"
 												min = "0"
+												step="0.01"
+												max = {this.state.max}
 												placeholder="0.00"
 												value = {this.state.amount}
 												onChange = {this.handleAmount}
@@ -84,6 +87,7 @@ class TransferRequest extends Component {
 			if(this.state.userOk)
 			{
 				const user_id = localStorage.getItem('user');
+				const mainUser = getObjetById(user_id, 'user');
 				const users = JSON.parse(localStorage.getItem('users'));
 				var idCred = -1;
 				users.forEach( user => {
@@ -91,10 +95,18 @@ class TransferRequest extends Component {
 					if(name === this.state.selectedUser)
 						idCred = user.id;
 				})
-				if(idCred != -1)
+				//on a retrouvé l'id de l'utilisateur désigné
+				if(idCred !== -1)
 				{
-					createTransfer(user_id, idCred, JSON.stringify(this.state.amount*100));
-					alert("Transaction completed");
+					if(this.state.amount*100 <= mainUser.balance)
+					{
+						createTransfer(user_id, idCred, JSON.stringify(this.state.amount*100));
+						alert("Transaction completed");
+					}
+					else
+						alert("there is not enough money in you wallet to perform the transaction." );
+
+					
 				}
 					
 			}

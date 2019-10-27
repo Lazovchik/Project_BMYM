@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { getObjetById } from '../../functions/ComponentTools';
-import { cpus } from 'os';
 
 // design for this component is from https://www.youtube.com/watch?v=NnpISZANByg
 class AutoCompSearch extends Component{
@@ -87,7 +86,7 @@ class AutoCompSearch extends Component{
             return  (<li className={this.state.selected === sugg ? 'list-group-item active': 'list-group-item' } 
                         value ={sugg} onMouseEnter={() => this.handleSelect(sugg)} key = {sugg}> 
                         {sugg} 
-                        </li>);
+                    </li>);
         });
         
         return displayed;

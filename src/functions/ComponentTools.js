@@ -9,7 +9,8 @@ export default function IsInDb(mail, pw){
   localStorage.setItem('mail', mail);
   const users = JSON.parse(localStorage.getItem('users'));
   //find the adress of the user in the db
-  const indexOfuser = users.findIndex(filterMail)
+  var indexOfuser = users.findIndex(filterMail);
+  indexOfuser = users[indexOfuser].id;
   //detect if it exists
   if (indexOfuser !== -1)
   {
@@ -192,12 +193,14 @@ export function createTransfer(nDebited_wallet_id, nCredited_wallet_id, nAmount)
   newId++;
   //create new user object
   var newTransfer = {
-      id: newId,
+      id: JSON.stringify(newId),
       debited_wallet_id : nDebited_wallet_id,
       credited_wallet_id: nCredited_wallet_id,
       amount: nAmount
   };
   addObject(newTransfer, 'transfer');
+  updateUserBalance(-nAmount ,nDebited_wallet_id);
+  updateUserBalance(nAmount ,nCredited_wallet_id);
 }
 //create a new payin and add it to db 
 export function createPayinOut(nUser_id, nAmount, type){
@@ -299,7 +302,11 @@ export function getLastTransfer(userId){
   
   //find the highest id (so the most recent) and return the transfer asociated
   if(transferTab !== null)
+  {
+    console.log(transferTab);
+
     return getObjetById(parseInt(findMaxId(transferTab)), 'transfer');
+  }
   else 
     return null;
 }
@@ -314,17 +321,22 @@ export function doPayInOut(amount, type){
     return false;
   }
   else{
-
     if(type === 'payout')
       amount = -amount;
-    const user = getObjetById(userId, 'user');
-    user.balance = String(parseInt(user.balance)+ amount);
+    
+    createPayinOut(userId, amount, type);
+    return updateUserBalance(amount, userId);
+  }
+}
+//update a user balance by adding amount
+export function updateUserBalance(amount, userId){
+  var user = getObjetById(userId, 'user');
+  const balance = parseInt(user.balance)+ parseInt(amount);
+    user.balance = JSON.stringify(balance);
+    console.log(balance)
     deleteObject(userId, 'user');
     addObject(user, 'user');
-    createPayinOut(userId, amount, type);
     return true;
-  }
-  
 }
 //update a card in the bdd 
 export function updateCard(cardId, number, nBrand, expirationDate){
