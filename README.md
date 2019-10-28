@@ -1,5 +1,5 @@
 # Watermelon Project
-**Equipe : Artemii Lazovskii & Paul-Louis Rossignol**
+**Equipe : Artemii Lazovskiii & Paul-Louis Rossignol**
 
 Pour tester le projet  :
 - Entrer dans le shell " **git clone https://github.com/Lazovchik/Project_BMYM.git**  "
