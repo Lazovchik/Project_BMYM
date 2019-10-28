@@ -1,19 +1,19 @@
-.home-main-container{
+.Welcome-main-container{
 	background-color: rgb(175, 0, 42, 0.3);
-	/*background-color: #9f9360;*/
 	margin-top: 2%;
 }
 
-.default-home-card{
+.default-Welcome-card{
 	background-color: rgb(175, 0, 42);
 }
 
-.home-btn{
+
+.Welcome-btn{
 	background-color: #99cc00;
 	min-width: 115px;
 }
 
-.activity-list, .home-card-list{
+.activity-list, .Welcome-card-list{
 	border-bottom: dashed;
 	border-color: #e60036;
 }

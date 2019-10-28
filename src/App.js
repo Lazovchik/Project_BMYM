@@ -16,6 +16,7 @@ import AccountPage from './Components/AccountPage/AccountPage';
 import TransactionsPage from './Components/TransactionsPage/TransactionsPage';
 import TransferPage from './Components/TransferPage/TransferPage';
 import OperationPage from './Components/Operation/OperationPage';
+import WelcomePage from './Components/others/WelcomePage';
 
 //CSS
 import './App.css';
@@ -90,6 +91,8 @@ class App extends Component {
               return (<LogIn onButtonClick = {this.changeDisplayedComp}/>) ;
           case 'SignIn' :
               return (<SignIn onButtonClick = {this.changeDisplayedComp}/>) ;
+          case 'Home' :
+              return (<WelcomePage onButtonClick = {this.changeDisplayedComp}/>) ;
           default :
               return '';
         }
