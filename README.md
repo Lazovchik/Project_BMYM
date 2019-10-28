@@ -1,4 +1,4 @@
-## Watermelon Project
+# Watermelon Project
 **Equipe : Artemii Lazovski & Paul-Louis Rossignol**
 
 Pour tester le projet  :
@@ -12,7 +12,7 @@ Pour tester le projet  :
 Pour avoir un aperçu rapide de profils avec plusieurs transactions et opérations effectuées.
 Sinon, vous pouvez vous créez un compte directement depuis la page d’accueil.
 
-# Sources utilisées pour le projet : 
+### Sources utilisées pour le projet : 
 -  https://www.youtube.com/watch?v=NnpISZANByg
 - https://stackoverflow.com/questions/52038110/how-do-i-make-a-footer-component-in-reactstrap
 - https://reactdatepicker.com/#example-custom-input
