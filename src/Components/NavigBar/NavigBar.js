@@ -3,14 +3,13 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import {
-	Navbar, NavbarBrand, 
+	Navbar, NavbarBrand, Row
 } from 'reactstrap';
 
 import './NavigBar.css';
 import logo from '../../data/img/logo3.png';
 
 import NavButtons from './NavButtons';
-import LogInButtons from './LogInButtons';
 import LogOutButton from './LogOutButton';
 
 class NavigBar extends Component {
@@ -32,7 +31,7 @@ class NavigBar extends Component {
 						</NavbarBrand>
 						<div className = 'web-page-title'> WATERMELON</div>
 					
-				<NavButtons onButtonClick = {this.props.onButtonClick}/>
+				
 				{this.buttonsToDisplay()}
 				
 				</div>
@@ -41,10 +40,11 @@ class NavigBar extends Component {
 	}
 	buttonsToDisplay(){
 		if(localStorage.getItem('user') !== null)
-			return(<LogOutButton onButtonClick = {this.props.onButtonClick}/>);
-		else
-			return(
-				<LogInButtons onButtonClick = {this.props.onButtonClick}/> );
+			return(<Row className='ml-2'>
+						<NavButtons onButtonClick = {this.props.onButtonClick}/>
+						<LogOutButton onButtonClick = {this.props.onButtonClick}/>
+				   </Row>	);
+	
 	}
 };
 

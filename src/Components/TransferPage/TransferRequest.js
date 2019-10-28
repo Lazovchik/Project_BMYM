@@ -53,7 +53,7 @@ class TransferRequest extends Component {
 									</Row>
 									<Row>
 										<FormGroup className="ml-5">
-											<Label for="name">Enter creditors Name:</Label>
+											<Label for="name">Enter creditors Email:</Label>
 											<AutoCompSearch userOk = {this.isUserCorrect} content = {this.state.selectedUser} 
 											changeContent = {this.handleSelectedUser} />
 										</FormGroup>
@@ -81,7 +81,7 @@ class TransferRequest extends Component {
 		});
 	}
 	handleTransfer = () =>{
-		if(this.state.amount < 1 )
+		if(this.state.amount*100 < 1 )
 			alert("You can't transfer less than 1€");
 		else
 			if(this.state.userOk)
@@ -91,7 +91,7 @@ class TransferRequest extends Component {
 				const users = JSON.parse(localStorage.getItem('users'));
 				var idCred = -1;
 				users.forEach( user => {
-					const name = user.first_name+" "+user.last_name;
+					const name = user.email;
 					if(name === this.state.selectedUser)
 						idCred = user.id;
 				})
@@ -107,8 +107,11 @@ class TransferRequest extends Component {
 					else
 						alert("There is not enough money in you wallet to perform the transaction." );
 
-					
 				}
+				else
+					console.log('ui')
+
+
 					
 			}
 			else

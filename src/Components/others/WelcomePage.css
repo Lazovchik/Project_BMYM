@@ -7,7 +7,11 @@
 	background-color: rgb(175, 0, 42);
 }
 
-
+h4{
+	background-color: rgb(175, 0, 42);
+	border-radius: 25px;
+	padding: 1%;
+}
 .Welcome-btn{
 	background-color: #99cc00;
 	min-width: 115px;

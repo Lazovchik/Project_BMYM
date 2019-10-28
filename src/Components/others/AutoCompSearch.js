@@ -11,7 +11,7 @@ class AutoCompSearch extends Component{
             suggestions: [],
             validUser: false,
             content: this.props.content,
-            selected: 'PL rossignol'
+            selected: ''
         };
     }
     componentDidMount()
@@ -32,7 +32,7 @@ class AutoCompSearch extends Component{
     onFocus = () =>{
         if(this.state.content.length === 0)
             this.setState({
-                suggestions:this.state.namesTab
+                suggestions:this.state.namesTab.slice(0, 3)
             });
     }
     onBlur = () =>{
@@ -67,14 +67,16 @@ class AutoCompSearch extends Component{
             if( bdd.length !== 0)
             {
                 suggests = [];
-                bdd.forEach(name => {
-                    if(name.toLowerCase().search(compare.toLowerCase()) !== -1)
-                        suggests.push(name);
+                bdd.forEach(email => {
+                    if(email.toLowerCase().search(compare.toLowerCase()) !== -1)
+                        suggests.push(email);
                 });
+                
             }
         }
+        
         this.setState({
-            suggestions : suggests,
+            suggestions : suggests.slice(0, 3),
             content : compare
         });
         this.props.userOk(false);
@@ -99,16 +101,19 @@ class AutoCompSearch extends Component{
         const userTabs = JSON.parse(localStorage.getItem('users'));
         //get the user
         const mainUser = getObjetById(parseInt(localStorage.getItem('user')), 'user');
-        const userName = mainUser.first_name + ' ' + mainUser.last_name; 
+        const userName = mainUser.email; 
         //add all elements, except the user connected
-        userTabs.forEach(user => {
-            const name = user.first_name + ' ' + user.last_name;
-            if(name !== userName)
-                returnTab.push(name);
-        });
-        this.setState({
-            namesTab: returnTab.slice()
-        });
+        if(userTabs !== null)
+        {
+            userTabs.forEach(user => {
+                if(user.email !== userName)
+                    returnTab.push(user.email);
+            });
+            this.setState({
+                namesTab: returnTab.slice()
+            });
+        }
+        
     }
 }
 export default AutoCompSearch;

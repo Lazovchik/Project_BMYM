@@ -152,10 +152,10 @@ class HomeCradList extends Component {
 						</Form>
 					</Row>
 					<Row className="home-card-list w-100 pl-1 ml-1">
-						<Button className="account-btn ml-3 mr-2" onClick={this.newCardCreation}>
+						<Button className="account-btn ml-3 mr-2 my-3" onClick={this.newCardCreation}>
 							Accept
 						</Button>
-						<Button className="account-btn ml-4" onClick={this.addSwitch}>
+						<Button className="account-btn ml-4 my-3" onClick={this.addSwitch}>
 							Cancel
 						</Button>
 					</Row>

@@ -37,11 +37,7 @@ class AccountOptions extends Component {
 							</Row>
 								{this.nationalityDisp()}
 								{this.idDisp()}
-							<Row>
-								<Button className='account-btn mt-3'>
-									Close my account mdr
-								</Button>
-							</Row>
+							
 						</div>
 					</CardBody>
 				</Card>

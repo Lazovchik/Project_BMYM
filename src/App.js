@@ -21,6 +21,7 @@ import WelcomePage from './Components/others/WelcomePage';
 //CSS
 import './App.css';
 import "react-datepicker/dist/react-datepicker.css";
+import Footer from './Components/others/Footer.js';
 
 //fonctions
 //import {showCards} from './functions/ComponentTools';
@@ -28,7 +29,7 @@ class App extends Component {
 	
 	constructor(props)
     {
-      //localStorage.clear();
+      localStorage.clear();
       super(props);
       localStorage.setItem('users', JSON.stringify(users));
       localStorage.setItem('cards', JSON.stringify(cards));
@@ -51,7 +52,7 @@ class App extends Component {
           <div>
 		      {this.switchDisplayedComp()}
           </div>
-         
+         <Footer />
        </div>
 		);
   }
