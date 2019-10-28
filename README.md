@@ -1,3 +1,27 @@
+## Watermelon Project
+**Equipe : Artemii Lazovski & Paul-Louis Rossignol**
+
+Pour tester le projet  :
+- Entrer dans le shell " **git clone https://github.com/Lazovchik/Project_BMYM.git**  "
+- Entrer dans le shell " **npm install --save react-router-dom**" pour télécharger React et les dépendances du projet.
+
+ Vous pouvez vous connectez avec les identifiants suivants:
+	 -  login :  rpaullouis@yahoo.fr / jr@hotmail.fr / AL@kgb.com
+	 - mot de passe: 123
+
+Pour avoir un aperçu rapide de profils avec plusieurs transactions et opérations effectuées.
+Sinon, vous pouvez vous créez un compte directement depuis la page d’accueil.
+
+# Sources utilisées pour le projet : 
+-  https://www.youtube.com/watch?v=NnpISZANByg
+- https://stackoverflow.com/questions/52038110/how-do-i-make-a-footer-component-in-reactstrap
+- https://reactdatepicker.com/#example-custom-input
+- https://stackoverflow.com/questions/1669190/find-the-min-max-element-of-an-array-in-javascript
+
+> Written with [StackEdit](https://stackedit.io/).
+
+
+### REACT PART
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
