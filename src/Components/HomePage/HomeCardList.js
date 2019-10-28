@@ -100,7 +100,7 @@ class HomeCradList extends Component {
 									<h5 className ="ml-4">Type</h5>
 								</Col>
 								<Col className="pl-4">
-									<h5 class="text-left">Expiration date</h5>
+									<h5 className="text-left">Expiration date</h5>
 								</Col>
 							</Row>
 							<Row className="">
